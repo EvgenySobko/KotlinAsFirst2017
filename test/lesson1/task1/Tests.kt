@@ -77,7 +77,7 @@ class Tests {
     @Test
     @Tag("Easy")
     fun travelMinutes() {
-        assertEquals(216, travelMinutes(9, 25, 13, 1))
+        assertEquals(354, travelMinutes(13, 37, 19, 31))
         assertEquals(469, travelMinutes(0, 0, 7, 49))
     }
 
