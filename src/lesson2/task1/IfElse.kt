@@ -2,6 +2,9 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
+import java.lang.Math
+import java.lang.Math.abs
+import java.lang.Math.sqrt
 
 /**
  * Пример
@@ -33,9 +36,16 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int) : String {
+    return when {
+        (age % 100 > 9) && (age % 100 < 21) || (age % 10 > 4) -> "$age лет"
+            (age % 10 < 5) && (age % 10 > 1) -> "$age года"
+               else -> "$age год"
+    }
+}
 
-/**
+
+    /**
  * Простая
  *
  * Путник двигался t1 часов со скоростью v1 км/час, затем t2 часов — со скоростью v2 км/час
@@ -44,7 +54,23 @@ fun ageDescription(age: Int): String = TODO()
  */
 fun timeForHalfWay(t1: Double, v1: Double,
                    t2: Double, v2: Double,
-                   t3: Double, v3: Double): Double = TODO()
+                   t3: Double, v3: Double): Double {
+        val s_half = (v1 * t1 + v2 * t2 + v3 * t3) / 2.0
+        val s1 = v1 * t1
+        val s2 = v2 * t2
+        val s3 = v3 * t3
+        if ((s1 != 0.0) || (s2 != 0.0) || (s3 != 0.0)) {
+            return if (s1 > s_half) s_half / v1
+            else if (s1 == s_half) t1
+            else if (s1 + s2 > s_half) t1 + (s_half - s1) / v2
+            else if (s1 + s2 == s_half) t1 + t2
+            else if ((s1 == 0.0) && (s2 == 0.0) && (s3 == s_half)) t3
+            else if ((s1 == 0.0) && (s2 == 0.0) && (s3 > s_half)) s_half/v3
+            else t1 + t2 + (s_half - s1 - s2) / v3}
+        else return Double.NaN
+    }
+
+
 
 /**
  * Простая
@@ -57,7 +83,12 @@ fun timeForHalfWay(t1: Double, v1: Double,
  */
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
-                       rookX2: Int, rookY2: Int): Int = TODO()
+                       rookX2: Int, rookY2: Int): Int {
+    return if(((kingX == rookX1) || (kingY == rookY1)) && ((kingX != rookX2) && (kingY != rookY2))) 1
+    else if (((kingX == rookX2) || (kingY == rookY2)) && ((kingX != rookX1) && (kingY != rookY1))) 2
+    else if (((kingX == rookX1) || (kingY == rookY1)) && ((kingX == rookX2) || (kingY == rookY2))) 3
+    else 0
+}
 
 /**
  * Простая
@@ -69,9 +100,20 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
  * и 3, если угроза есть и от ладьи и от слона.
  * Считать, что ладья и слон не могут загораживать друг друга.
  */
+
+
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
-                          bishopX: Int, bishopY: Int): Int = TODO()
+                          bishopX: Int, bishopY: Int): Int {
+    return if ((((kingX == rookX) || (kingY == rookY))) && (abs(bishopX - kingX)) != (abs(bishopY - kingY))) 1
+    else if (((((kingX * kingX) == (bishopX * bishopX + bishopY * bishopY)))
+            || ((kingY * kingY) == (bishopX * bishopX + bishopY * bishopY)))
+            && ((((kingX != rookX) && (kingY != rookY))))) 2
+    else if (((((kingX * kingX) == (bishopX * bishopX + bishopY * bishopY)))
+            || ((kingY * kingY) == (bishopX * bishopX + bishopY * bishopY)))
+            && ((((kingX != rookX) || (kingY != rookY))))) 3
+    else return 0
+}
 
 /**
  * Простая

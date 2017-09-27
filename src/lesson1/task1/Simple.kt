@@ -51,7 +51,7 @@ fun main(args: Array<String>) {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = (seconds + minutes * 60 + hours * 3600)
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = seconds + minutes * 60 + hours * 3600
 
 /**
  * Тривиальная
@@ -60,7 +60,7 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = (seconds + minutes * 
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = 4.445/100 * (vershoks + (arshins * 16) + (48 * sagenes))
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = 4.445 / 100 * (vershoks + (arshins * 16) + (48 * sagenes))
 
 /**
  * Тривиальная
@@ -68,7 +68,7 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = 4.445/10
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad + (min + sec / 60.0) / 60.0) * (PI / 180)
+fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad + (min + sec / 60.0) / 60.0) * PI / 180
 
 /**
  * Тривиальная
@@ -78,6 +78,7 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad + (min + sec / 
  */
 fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2))
 
+
 /**
  * Простая
  *
@@ -85,8 +86,8 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt((
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
 fun thirdDigit(number: Int): Int {
-    val num3 = number / 100 % 10
-    return num3
+    val cifra3 = number / 100 % 10
+    return cifra3
 }
 /**
  * Простая
