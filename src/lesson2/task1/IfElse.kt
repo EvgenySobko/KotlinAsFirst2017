@@ -106,12 +106,8 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
                           bishopX: Int, bishopY: Int): Int {
     return if ((((kingX == rookX) || (kingY == rookY))) && (abs(bishopX - kingX)) != (abs(bishopY - kingY))) 1
-    else if (((((kingX * kingX) == (bishopX * bishopX + bishopY * bishopY)))
-            || ((kingY * kingY) == (bishopX * bishopX + bishopY * bishopY)))
-            && ((((kingX != rookX) && (kingY != rookY))))) 2
-    else if (((((kingX * kingX) == (bishopX * bishopX + bishopY * bishopY)))
-            || ((kingY * kingY) == (bishopX * bishopX + bishopY * bishopY)))
-            && ((((kingX != rookX) || (kingY != rookY))))) 3
+    else if (abs(bishopX - kingX) == (abs(bishopY - kingY)) && ((((kingX != rookX) && (kingY != rookY))))) 2
+    else if (abs(bishopX - kingX) == (abs(bishopY - kingY)) && ((((kingX == rookX) || (kingY == rookY))))) 3
     else return 0
 }
 
@@ -123,7 +119,14 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
+fun triangleKind(a: Double, b: Double, c: Double): Double {
+    return when {
+        (a * a + b * b == c * c) || (a * a + c * c == b * b) || (b * b + c * c == a * a) -> 1
+        (abs(a + b) > abs(a - b) || abs(a + c) > abs(a - c) || abs(a + c) > abs(a - c)) -> 0
+        (abs(a + b) < abs(a - b) || abs(a + c) < abs(a - c) || abs(a + c) < abs(a - c)) -> 2
+        else ->
+    }
+}
 
 /**
  * Средняя
