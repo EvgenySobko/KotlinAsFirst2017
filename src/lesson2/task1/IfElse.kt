@@ -119,16 +119,25 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * прямоугольным (вернуть 1) или тупоугольным (вернуть 2).
  * Если такой треугольник не существует, вернуть -1.
  */
-fun triangleKind(a: Double, b: Double, c: Double): Double {
-    return when {
-        (a * a + b * b == c * c) || (a * a + c * c == b * b) || (b * b + c * c == a * a) -> 1
-        (abs(a + b) > abs(a - b) || abs(a + c) > abs(a - c) || abs(a + c) > abs(a - c)) -> 0
-        (abs(a + b) < abs(a - b) || abs(a + c) < abs(a - c) || abs(a + c) < abs(a - c)) -> 2
-        else ->
-    }
+fun triangleKind(a: Double, b: Double, c: Double): Int {
+    //If the triangle exists
+    return if ((a + b <= c) || (a + c <= b) || (b + c <= a)) -1
+    //If a is the biggest side
+    else if (((a > b) && (a > c)) && (a * a == b * b + c * c)) 1
+    else if (((a > b) && (a > c)) && (a * a < b * b + c * c)) 0
+    else if (((a > b) && (a > c)) && (a * a > b * b + c * c)) 2
+    //If b is the biggest side
+    else if (((b > a) && (b > c)) && (b * b == a * a + c * c)) 1
+    else if (((b > a) && (b > c)) && (b * b < a * a + c * c)) 0
+    else if (((b > a) && (b > c)) && (b * b > a * a + c * c)) 2
+    //If c is the biggest side
+    else if (((c > a) && (c > b)) && (c * c == a * a + b * b)) 1
+    else if (((c > a) && (c > b)) && (c * c > a * a + b * b)) 2
+    else 0
 }
 
-/**
+
+    /**
  * Средняя
  *
  * Даны четыре точки на одной прямой: A, B, C и D.
@@ -136,4 +145,14 @@ fun triangleKind(a: Double, b: Double, c: Double): Double {
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+        return when {
+            ((a > d) || (b < c)) -> -1
+            ((a < c) && (b > d)) -> abs(d - c)
+            ((b >= c) && (a <= c)) -> abs(b - c)
+            ((a >= c) && (b >= d)) -> abs(d - a)
+            ((a >= c) && (b <= d)) -> abs(b - a)
+            else -> -1
+        }
+    }
+
