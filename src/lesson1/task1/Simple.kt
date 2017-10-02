@@ -60,7 +60,7 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = seconds + minutes * 6
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = 4.445 / 100 * (vershoks + (arshins * 16) + (48 * sagenes))
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = 4.445 / 100 * (vershoks + arshins * 16 + 48 * sagenes)
 
 /**
  * Тривиальная
@@ -76,7 +76,7 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double = (grad + (min + sec / 
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2))
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt((x1 - x2) * (x1 - x2) + (y1 - y2) * (y1 - y2))
 
 
 /**
