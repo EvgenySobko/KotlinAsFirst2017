@@ -49,13 +49,9 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean {
  */
 fun circleInside(x1: Double, y1: Double, r1: Double,
                  x2: Double, y2: Double, r2: Double): Boolean {
-    val dopus_raznica = r2 - r1
-    val mal = x1 + y1
-    val big = x2 + y2
-    if (dopus_raznica < 0) return false
-    else return if (((sqrt(mal * mal + big * big) <= dopus_raznica) && (x2 - x1 <= dopus_raznica)
-            && (y2 - y1 <= dopus_raznica) || ((x1 == x2) && (y1 == y2) && (x1 == y1)))) true
-    else return false
+    return if (r1 > r2) false
+    else if (sqr(x2 - x1) + sqr(y2 - y1) <= sqr(r2-r1)) true
+        else return false
 }
 
 /**
