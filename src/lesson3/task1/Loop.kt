@@ -1,6 +1,8 @@
 @file:Suppress("UNUSED_PARAMETER")
 package lesson3.task1
 
+import java.lang.Math.sqrt
+
 /**
  * Пример
  *
@@ -60,15 +62,38 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  * Найти количество цифр в заданном числе n.
  * Например, число 1 содержит 1 цифру, 456 -- 3 цифры, 65536 -- 5 цифр.
  */
-fun digitNumber(n: Int): Int = TODO()
-
+fun digitNumber(n: Int): Int {
+    var number = n
+    var k = 0
+    while (number != 0) {
+        number /= 10
+        k += 1
+    }
+    if (k == 0) {
+        k += 1
+    }
+    return k
+}
 /**
  * Простая
  *
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int = TODO()
+fun fib(n: Int): Int {
+    var fib_sum = 0
+    var fib1 = 1
+    var fib2 = 1
+    var i = 2
+    while (i < n) {
+        fib_sum = fib2 + fib1
+        fib1 = fib2
+        fib2 = fib_sum
+        i += 1
+    }
+    return if (fib_sum == 0) 1
+    else return fib_sum
+}
 
 /**
  * Простая
@@ -134,8 +159,15 @@ fun cos(x: Double, eps: Double): Double = TODO()
  * Поменять порядок цифр заданного числа n на обратный: 13478 -> 87431.
  * Не использовать строки при решении задачи.
  */
-fun revert(n: Int): Int = TODO()
-
+fun revert(n: Int): Int {
+    var number = n
+    var rez = 0
+    while (number > 0) {
+        rez = rez * 10 + number % 10
+        number /= 10
+    }
+    return rez
+}
 /**
  * Средняя
  *
