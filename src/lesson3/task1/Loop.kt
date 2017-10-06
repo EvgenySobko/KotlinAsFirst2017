@@ -2,6 +2,8 @@
 package lesson3.task1
 
 import java.lang.Math.sqrt
+import kotlin.Int.Companion.toString
+import java.lang.Math.pow
 
 /**
  * Пример
@@ -175,7 +177,9 @@ fun revert(n: Int): Int {
  * первая цифра равна последней, вторая -- предпоследней и так далее.
  * 15751 -- палиндром, 3653 -- нет.
  */
-fun isPalindrome(n: Int): Boolean = TODO()
+fun isPalindrome(n: Int): Boolean {
+    return revert(n) == n
+}
 
 /**
  * Средняя
@@ -185,6 +189,7 @@ fun isPalindrome(n: Int): Boolean = TODO()
  */
 fun hasDifferentDigits(n: Int): Boolean = TODO()
 
+
 /**
  * Сложная
  *
@@ -192,7 +197,35 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  * 149162536496481100121144...
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
-fun squareSequenceDigit(n: Int): Int = TODO()
+fun squareSequenceDigit(n: Int): Int {
+        var znach = 0L
+        var kvadr = 0L
+        var nomer = 0
+        var summa = 0
+        var delitel = 1L
+        while (nomer < n) {
+            znach += 1
+            kvadr = znach * znach
+            summa = 0
+            while (kvadr > 0) {
+                kvadr /= 10
+                summa += 1 }
+            kvadr = znach * znach
+            nomer = nomer + summa }
+        nomer = nomer - summa
+        while (summa > 0) {
+            delitel = delitel * 10
+            summa -= 1 }
+        while (nomer != n){
+            kvadr = kvadr % delitel
+            delitel /= 10
+            nomer += 1
+        }
+        return if (delitel.toInt() == 0) kvadr.toInt()
+        else
+            kvadr.toInt() / delitel.toInt()
+    }
+
 
 /**
  * Сложная
@@ -202,3 +235,4 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  * Например, 2-я цифра равна 1, 9-я 2, 14-я 5.
  */
 fun fibSequenceDigit(n: Int): Int = TODO()
+
