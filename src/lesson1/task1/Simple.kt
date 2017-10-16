@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson1.task1
 
 import java.lang.Math.*
@@ -80,7 +81,7 @@ fun angleInRadian(grad: Int, min: Int, sec: Int): Double =
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
 fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double =
-        sqrt (Math.pow (x1 - x2, 2.0) + Math.pow (y1 - y2, 2.0))
+        sqrt(Math.pow(x1 - x2, 2.0) + Math.pow(y1 - y2, 2.0))
 
 
 /**
@@ -109,7 +110,7 @@ fun travelMinutes(hoursDepart: Int, minutesDepart: Int, hoursArrive: Int, minute
  * Например, 100 рублей под 10% годовых превратятся в 133.1 рубля
  */
 fun accountInThreeYears(initial: Int, percent: Int): Double =
-        initial * Math.pow (1 + percent / 100.0, 3.0)
+        initial * Math.pow(1 + percent / 100.0, 3.0)
 
 /**
  * Простая
@@ -117,7 +118,7 @@ fun accountInThreeYears(initial: Int, percent: Int): Double =
  * Пользователь задает целое трехзначное число (например, 478).
  *Необходимо вывести число, полученное из заданного перестановкой цифр в обратном порядке (например, 874).
  */
-fun numberRevert(number : Int): Int{
+fun numberRevert(number: Int): Int {
     val x1 = number % 10 * 100
     val x2 = number % 100 / 10 * 10
     val x3 = number / 100
