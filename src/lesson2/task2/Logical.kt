@@ -4,7 +4,6 @@ package lesson2.task2
 
 import lesson1.task1.sqr
 import java.lang.Math.abs
-import java.lang.Math.sqrt
 
 /**
  * Пример
@@ -20,14 +19,13 @@ fun pointInsideCircle(x: Double, y: Double, x0: Double, y0: Double, r: Double) =
  * Четырехзначное число назовем счастливым, если сумма первых двух ее цифр равна сумме двух последних.
  * Определить, счастливое ли заданное число, вернуть true, если это так.
  */
-fun isNumberHappy(number: Int): Boolean {
-    val c4 = number % 10
-    val c3 = number / 10 % 10
-    val c2 = number / 100 % 10
-    val c1 = number / 1000
-    return if (c1 + c2 != c3 + c4) false
-    else return true
+fun NumberHappy2(number: Int): Int {
+    val num1 = number % 10
+    val num2 = number % 100 / 10
+    return num1 + num2
 }
+
+fun isNumberHappy(number: Int): Boolean = NumberHappy2(number) == NumberHappy2(number / 100)
 
 /**
  * Простая
@@ -48,9 +46,7 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean {
  * Вернуть true, если утверждение верно
  */
 fun circleInside(x1: Double, y1: Double, r1: Double,
-                 x2: Double, y2: Double, r2: Double): Boolean {
-    return ((Math.sqrt(sqr(y2 - y1) + sqr(x2 - x1)) + r1) <= r2)
-}
+                 x2: Double, y2: Double, r2: Double): Boolean = ((Math.sqrt(sqr(y2 - y1) + sqr(x2 - x1)) + r1) <= r2)
 
 /**
  * Средняя
