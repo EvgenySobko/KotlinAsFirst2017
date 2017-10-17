@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task2
 
 import lesson1.task1.sqr
@@ -36,8 +37,7 @@ fun isNumberHappy(number: Int): Boolean {
  * Считать, что ферзи не могут загораживать друг друга.
  */
 fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean {
-    return if ((x1 == x2) || (y1 == y2) || (abs(x1 - x2) == abs(y1 - y2))) true
-    else return false
+    return (x1 == x2) || (y1 == y2) || (abs(x1 - x2) == abs(y1 - y2))
 }
 
 /**
@@ -49,9 +49,7 @@ fun queenThreatens(x1: Int, y1: Int, x2: Int, y2: Int): Boolean {
  */
 fun circleInside(x1: Double, y1: Double, r1: Double,
                  x2: Double, y2: Double, r2: Double): Boolean {
-    return if (r1 > r2) false
-    else if (sqr(x2 - x1) + sqr(y2 - y1) <= sqr(r2-r1)) true
-        else return false
+    return ((Math.sqrt(sqr(y2 - y1) + sqr(x2 - x1)) + r1) <= r2)
 }
 
 /**
@@ -64,9 +62,6 @@ fun circleInside(x1: Double, y1: Double, r1: Double,
  * Вернуть true, если кирпич пройдёт
  */
 fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
-    return if ((((a == b) && (b == c) && (c == r) && (r == s))
-            || (((a <= r) && (b <= s) || ((a <= s) && (b <= r)))
-            || (((c <= r) && (b <= s)) || ((c <= s) && (b <= r)))
-            || (((a <= r) && (c <= s)) || ((c <= r) && (a <= s)))))) true
-    else return false
+    val (min, mid) = listOf(a, b, c).sorted()
+    return (min <= r && mid <= s) || (min <= s && mid <= r)
 }

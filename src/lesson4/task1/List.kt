@@ -1,7 +1,9 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson4.task1
 
 import lesson1.task1.discriminant
+import java.lang.Math.sqrt
 
 /**
  * Пример
@@ -106,7 +108,13 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * по формуле abs = sqrt(a1^2 + a2^2 + ... + aN^2).
  * Модуль пустого вектора считать равным 0.0.
  */
-fun abs(v: List<Double>): Double = TODO()
+fun abs(v: List<Double>): Double {
+    var dlina = 0.0
+    for (i in 0 until v.size) {
+        dlina += Math.pow(v[i], 2.0)
+    }
+    return sqrt(dlina)
+}
 
 /**
  * Простая
@@ -118,7 +126,7 @@ fun mean(list: List<Double>): Double {
     for (i in 0 until list.size) {
         sr = list.sum() / list.size
     }
-return sr
+    return sr
 }
 
 /**
@@ -130,9 +138,9 @@ return sr
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-    var element = mean(list)
+    val element = mean(list)
     for (i in 0 until list.size) list[i] -= element
-return list
+    return list
 }
 
 /**
@@ -142,7 +150,13 @@ return list
  * представленные в виде списков a и b. Скалярное произведение считать по формуле:
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.0.
  */
-fun times(a: List<Double>, b: List<Double>): Double = TODO()
+fun times(a: List<Double>, b: List<Double>): Double {
+    var proizv = 0.0
+    for (i in 0 until a.size) {
+        proizv += a[i] * b[i]
+    }
+    return proizv
+}
 
 /**
  * Средняя
@@ -152,7 +166,13 @@ fun times(a: List<Double>, b: List<Double>): Double = TODO()
  * Коэффициенты многочлена заданы списком p: (p0, p1, p2, p3, ..., pN).
  * Значение пустого многочлена равно 0.0 при любом x.
  */
-fun polynom(p: List<Double>, x: Double): Double = TODO()
+fun polynom(p: List<Double>, x: Double): Double {
+    var znach = 0.0
+    for (i in 0 until p.size) {
+        znach += p[i] * Math.pow(x, i.toDouble())
+    }
+    return znach
+}
 
 /**
  * Средняя

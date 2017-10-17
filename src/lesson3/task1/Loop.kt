@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson3.task1
 
 import java.lang.Math.sqrt
@@ -38,7 +39,7 @@ fun isPrime(n: Int): Boolean {
  */
 fun isPerfect(n: Int): Boolean {
     var sum = 1
-    for (m in 2..n/2) {
+    for (m in 2..n / 2) {
         if (n % m > 0) continue
         sum += m
         if (sum > n) break
@@ -76,6 +77,7 @@ fun digitNumber(n: Int): Int {
     }
     return k
 }
+
 /**
  * Простая
  *
@@ -107,11 +109,10 @@ fun lcm(m: Int, n: Int): Int {
     var n = n
     var m = m
     var pr = m * n
-    while(m != n) {
+    while (m != n) {
         if (m > n) {
             m -= n
-        }
-        else
+        } else
             n -= m
     }
     return pr / m
@@ -199,6 +200,7 @@ fun revert(n: Int): Int {
     }
     return rez
 }
+
 /**
  * Средняя
  *
@@ -227,33 +229,36 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
 fun squareSequenceDigit(n: Int): Int {
-        var znach = 0L
-        var kvadr = 0L
-        var nomer = 0
-        var summa = 0
-        var delitel = 1L
-        while (nomer < n) {
-            znach += 1
-            kvadr = znach * znach
-            summa = 0
-            while (kvadr > 0) {
-                kvadr /= 10
-                summa += 1 }
-            kvadr = znach * znach
-            nomer = nomer + summa }
-        nomer = nomer - summa
-        while (summa > 0) {
-            delitel = delitel * 10
-            summa -= 1 }
-        while (nomer != n){
-            kvadr = kvadr % delitel
-            delitel /= 10
-            nomer += 1
+    var znach = 0L
+    var kvadr = 0L
+    var nomer = 0
+    var summa = 0
+    var delitel = 1L
+    while (nomer < n) {
+        znach += 1
+        kvadr = znach * znach
+        summa = 0
+        while (kvadr > 0) {
+            kvadr /= 10
+            summa += 1
         }
-        return if (delitel.toInt() == 0) kvadr.toInt()
-        else
-            kvadr.toInt() / delitel.toInt()
+        kvadr = znach * znach
+        nomer = nomer + summa
     }
+    nomer = nomer - summa
+    while (summa > 0) {
+        delitel = delitel * 10
+        summa -= 1
+    }
+    while (nomer != n) {
+        kvadr = kvadr % delitel
+        delitel /= 10
+        nomer += 1
+    }
+    return if (delitel.toInt() == 0) kvadr.toInt()
+    else
+        kvadr.toInt() / delitel.toInt()
+}
 
 
 /**
