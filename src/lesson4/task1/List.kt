@@ -235,13 +235,13 @@ fun factorizeToString(n: Int): String {
  */
 fun convert(n: Int, base: Int): List<Int> {
     var num = n
-    var chisla = listOf<Int>()
-    if (num == 0) return chisla
+    var rez = listOf<Int>()
+    if (num == 0) return rez
     else while (num > 0) {
-        chisla += num % base
+        rez += num % base
         num /= base
     }
-    return chisla.reversed()
+    return rez.reversed()
 }
 
 /**
