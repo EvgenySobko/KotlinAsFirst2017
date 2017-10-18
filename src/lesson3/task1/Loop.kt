@@ -108,7 +108,7 @@ fun fib(n: Int): Int {
 fun lcm(m: Int, n: Int): Int {
     var n = n
     var m = m
-    var pr = m * n
+    val pr = m * n
     while (m != n) {
         if (m > n) {
             m -= n
@@ -126,8 +126,8 @@ fun lcm(m: Int, n: Int): Int {
  */
 fun minDivisor(n: Int): Int {
     var minDivisor = 2
-    for (i in 1..n) {
-        if (n % minDivisor != 0) {
+    for (i in 1 until n) {
+        if (n % minDivisor > 0) {
             minDivisor += 1
         }
     }

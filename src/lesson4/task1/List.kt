@@ -222,7 +222,7 @@ fun factorize(n: Int): List<Int> {
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  */
 fun factorizeToString(n: Int): String {
-    val joinToString = factorize(n).joinToString ("*")
+    val joinToString = factorize(n).joinToString("*")
     return joinToString
 }
 
@@ -236,7 +236,8 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     var num = n
     var chisla = listOf<Int>()
-    while (num > 0) {
+    if (num == 0) return chisla
+    else while (num > 0) {
         chisla += num % base
         num /= base
     }
