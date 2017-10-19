@@ -236,7 +236,7 @@ fun factorizeToString(n: Int): String {
 fun convert(n: Int, base: Int): List<Int> {
     var num = n
     var rez = listOf<Int>()
-    if (num == 0) return rez
+    if (num == 0) return listOf(n)
     else while (num > 0) {
         rez += num % base
         num /= base
