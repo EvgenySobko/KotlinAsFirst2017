@@ -2,10 +2,6 @@
 
 package lesson3.task1
 
-import java.lang.Math.sqrt
-import kotlin.Int.Companion.toString
-import java.lang.Math.pow
-
 /**
  * Пример
  *
@@ -218,7 +214,17 @@ fun isPalindrome(n: Int): Boolean {
  * Для заданного числа n определить, содержит ли оно различающиеся цифры.
  * Например, 54 и 323 состоят из разных цифр, а 111 и 0 из одинаковых.
  */
-fun hasDifferentDigits(n: Int): Boolean = TODO()
+fun hasDifferentDigits(n: Int): Boolean {
+    var num = n
+    val prom = n % 10
+    var failed = true
+    while (num > 0) {
+        if (num % 10 != prom) failed = false
+        num /= 10
+    }
+    return (failed == false)
+    return false
+}
 
 
 /**
@@ -243,15 +249,15 @@ fun squareSequenceDigit(n: Int): Int {
             summa += 1
         }
         kvadr = znach * znach
-        nomer = nomer + summa
+        nomer += summa
     }
-    nomer = nomer - summa
+    nomer -= summa
     while (summa > 0) {
-        delitel = delitel * 10
+        delitel *= 10
         summa -= 1
     }
     while (nomer != n) {
-        kvadr = kvadr % delitel
+        kvadr %= delitel
         delitel /= 10
         nomer += 1
     }
