@@ -64,13 +64,10 @@ fun digitCountInNumber(n: Int, m: Int): Int =
 fun digitNumber(n: Int): Int {
     var number = n
     var k = 0
-    while (number != 0) {
+    do {
         number /= 10
         k += 1
-    }
-    if (k == 0) {
-        k += 1
-    }
+    } while (number != 0)
     return k
 }
 
@@ -81,19 +78,17 @@ fun digitNumber(n: Int): Int {
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
 fun fib(n: Int): Int {
-    var fib_sum = 0
-    var fib1 = 1
-    var fib2 = 1
-    var i = 2
-    while (i < n) {
-        fib_sum = fib2 + fib1
+    var fib1: Int = 0
+    var fibSum: Int = 1
+    var fib2: Int = 1
+    for (m in 1 until n) {
+        fib2 = fibSum
+        fibSum += fib1
         fib1 = fib2
-        fib2 = fib_sum
-        i += 1
     }
-    return if (fib_sum == 0) 1
-    else return fib_sum
+    return fibSum
 }
+
 
 /**
  * Простая
@@ -101,18 +96,11 @@ fun fib(n: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int {
-    var n = n
-    var m = m
-    val pr = m * n
-    while (m != n) {
-        if (m > n) {
-            m -= n
-        } else
-            n -= m
-    }
-    return pr / m
-}
+fun nod(a: Int, b: Int): Int = if (a != 0) nod(b % a, a) else b
+
+fun nok(a: Int, b: Int) = a / nod(a, b) * b
+
+fun lcm(m: Int, n: Int) = nok(m, n)
 
 
 /**
@@ -122,11 +110,7 @@ fun lcm(m: Int, n: Int): Int {
  */
 fun minDivisor(n: Int): Int {
     var minDivisor = 2
-    for (i in 1 until n) {
-        if (n % minDivisor > 0) {
-            minDivisor += 1
-        }
-    }
+    while (n % minDivisor != 0) minDivisor++
     return minDivisor
 }
 
@@ -137,11 +121,7 @@ fun minDivisor(n: Int): Int {
  */
 fun maxDivisor(n: Int): Int {
     var maxDivisor = n - 1
-    for (i in 2..n) {
-        if (n % maxDivisor != 0) {
-            maxDivisor -= 1
-        }
-    }
+    while (n % maxDivisor != 0) maxDivisor++
     return maxDivisor
 }
 
@@ -222,8 +202,7 @@ fun hasDifferentDigits(n: Int): Boolean {
         if (num % 10 != prom) failed = false
         num /= 10
     }
-    return (failed == false)
-    return false
+    return (!failed)
 }
 
 
