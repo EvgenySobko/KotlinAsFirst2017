@@ -221,10 +221,8 @@ fun factorize(n: Int): List<Int> {
  * Разложить заданное натуральное число n > 1 на простые множители.
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  */
-fun factorizeToString(n: Int): String {
-    val joinToString = factorize(n).joinToString("*")
-    return joinToString
-}
+fun factorizeToString(n: Int): String = factorize(n).joinToString ("*")
+
 
 /**
  * Средняя

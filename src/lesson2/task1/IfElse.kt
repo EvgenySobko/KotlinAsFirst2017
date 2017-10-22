@@ -3,9 +3,7 @@
 package lesson2.task1
 
 import lesson1.task1.discriminant
-import java.lang.Math
 import java.lang.Math.abs
-import java.lang.Math.sqrt
 
 /**
  * Пример
@@ -77,11 +75,16 @@ fun timeForHalfWay(t1: Double, v1: Double,
 fun whichRookThreatens(kingX: Int, kingY: Int,
                        rookX1: Int, rookY1: Int,
                        rookX2: Int, rookY2: Int): Int {
-    return if (((kingX == rookX1) || (kingY == rookY1)) && ((kingX != rookX2) && (kingY != rookY2))) 1
-    else if (((kingX == rookX2) || (kingY == rookY2)) && ((kingX != rookX1) && (kingY != rookY1))) 2
-    else if (((kingX == rookX1) || (kingY == rookY1)) && ((kingX == rookX2) || (kingY == rookY2))) 3
-    else 0
+    val king1 = kingX == rookX1 || kingY == rookY1
+    val king2 = kingX == rookX2 || kingY == rookY2
+    return when {
+        king1 && king2 -> 3
+        king2 -> 2
+        king1 -> 1
+        else -> 0
+    }
 }
+
 
 /**
  * Простая
@@ -98,11 +101,16 @@ fun whichRookThreatens(kingX: Int, kingY: Int,
 fun rookOrBishopThreatens(kingX: Int, kingY: Int,
                           rookX: Int, rookY: Int,
                           bishopX: Int, bishopY: Int): Int {
-    return if (((kingX == rookX) || (kingY == rookY)) && abs(bishopX - kingX) != abs(bishopY - kingY)) 1
-    else if (abs(bishopX - kingX) == abs(bishopY - kingY) && ((kingX != rookX) && (kingY != rookY))) 2
-    else if (abs(bishopX - kingX) == abs(bishopY - kingY) && ((kingX == rookX) || (kingY == rookY))) 3
-    else return 0
+    val kingRook = kingX == rookX || kingY == rookY
+    val kingBishop = abs(bishopX - kingX) == abs(bishopY - kingY)
+    return when {
+        kingRook && kingBishop -> 3
+        kingRook -> 1
+        kingBishop -> 2
+        else -> 0
+    }
 }
+
 
 /**
  * Простая
@@ -113,15 +121,18 @@ fun rookOrBishopThreatens(kingX: Int, kingY: Int,
  * Если такой треугольник не существует, вернуть -1.
  */
 fun triangleKind(a: Double, b: Double, c: Double): Int {
-    val (min, mid, max) = listOf(a, b, c).sorted()
-    val max2 = Math.pow(max, 2.0)
-    val mid2 = Math.pow(mid, 2.0)
-    val min2 = Math.pow(min, 2.0)
-    return if ((a + b <= c) || (a + c <= b) || (b + c <= a)) -1
-    else if (max2 > min2 + mid2) 2
-    else if (max2 < min2 + mid2) 0
-    else if (max2 == min2 + mid2) 1
-    else -1
+    return if (a + b <= c || a + c <= b || b + c <= a) -1
+    else {
+        val (min, mid, max) = listOf(a, b, c).sorted()
+        val max2 = Math.pow(max, 2.0)
+        val mid2 = Math.pow(mid, 2.0)
+        val min2 = Math.pow(min, 2.0)
+        when {
+            (max2 > min2 + mid2) -> 2
+            (max2 < min2 + mid2) -> 0
+            else -> 1
+        }
+    }
 }
 
 
