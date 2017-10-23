@@ -3,7 +3,6 @@
 package lesson4.task1
 
 import lesson1.task1.discriminant
-import lesson3.task1.isPrime
 import java.lang.Math.sqrt
 
 /**
@@ -202,18 +201,19 @@ fun accumulate(list: MutableList<Double>): MutableList<Double> {
  * Множители в списке должны располагаться по возрастанию.
  */
 fun factorize(n: Int): List<Int> {
+    var count = 2
     var num = n
-    var list = listOf<Int>()
-    for (i in 0..num) {
-        if (isPrime(i) == true) {
-            while (num % i == 0) {
-                list += i
-                num /= i
-            }
+    val list = mutableListOf<Int>()
+    while (count <= num) {
+        if (num % count == 0) {
+            list += count
+            num /= count
         }
+        else count += 1
     }
-    return list
+return list.sorted()
 }
+
 
 /**
  * Сложная
@@ -221,7 +221,7 @@ fun factorize(n: Int): List<Int> {
  * Разложить заданное натуральное число n > 1 на простые множители.
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  */
-fun factorizeToString(n: Int): String = factorize(n).joinToString ("*")
+fun factorizeToString(n: Int): String = factorize(n).joinToString("*")
 
 
 /**
