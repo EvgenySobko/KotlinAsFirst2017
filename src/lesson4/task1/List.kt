@@ -110,8 +110,8 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  */
 fun abs(v: List<Double>): Double {
     var dlina = 0.0
-    for (i in 0 until v.size) {
-        dlina += Math.pow(v[i], 2.0)
+    for (i in v) {
+        dlina += Math.pow(i, 2.0)
     }
     return sqrt(dlina)
 }
@@ -122,11 +122,9 @@ fun abs(v: List<Double>): Double {
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
 fun mean(list: List<Double>): Double {
-    var sr = 0.0
-    for (i in 0 until list.size) {
-        sr = list.sum() / list.size
-    }
-    return sr
+    val sr = list.sum() / list.size
+    return if (sr > 0.0) sr
+    else 0.0
 }
 
 /**
@@ -139,7 +137,9 @@ fun mean(list: List<Double>): Double {
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
     val element = mean(list)
-    for (i in 0 until list.size) list[i] -= element
+    for (i in 0 until list.size) {
+        list[i] -= element
+    }
     return list
 }
 
@@ -208,10 +208,9 @@ fun factorize(n: Int): List<Int> {
         if (num % count == 0) {
             list += count
             num /= count
-        }
-        else count += 1
+        } else count += 1
     }
-return list.sorted()
+    return list.sorted()
 }
 
 
