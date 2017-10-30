@@ -137,9 +137,9 @@ fun mean(list: List<Double>): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-    var sr = mean(list)
+    val element = mean(list)
     for (i in 0 until list.size) {
-        list[i] -= sr
+        list[i] -= element
     }
     return list
 }
