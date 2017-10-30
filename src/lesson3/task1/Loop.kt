@@ -174,12 +174,12 @@ fun cos(x: Double, eps: Double): Double = TODO()
  */
 fun revert(n: Int): Int {
     var number = n
-    var rez = 0
+    var res = 0
     while (number > 0) {
-        rez = rez * 10 + number % 10
+        res = res * 10 + number % 10
         number /= 10
     }
-    return rez
+    return res
 }
 
 /**
@@ -219,35 +219,35 @@ fun hasDifferentDigits(n: Int): Boolean {
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
 fun squareSequenceDigit(n: Int): Int {
-    var znach = 0L
-    var kvadr = 0L
-    var nomer = 0
-    var summa = 0
-    var delitel = 1L
-    while (nomer < n) {
-        znach += 1
-        kvadr = znach * znach
-        summa = 0
-        while (kvadr > 0) {
-            kvadr /= 10
-            summa += 1
+    var result = 0L
+    var sqr = 0L
+    var num = 0
+    var sum = 0
+    var divisor = 1L
+    while (num < n) {
+        result += 1
+        sqr = Math.pow(result.toDouble(), 2.0).toLong()
+        sum = 0
+        while (sqr > 0) {
+            sqr /= 10
+            sum += 1
         }
-        kvadr = znach * znach
-        nomer += summa
+        sqr = Math.pow(result.toDouble(), 2.0).toLong()
+        num += sum
     }
-    nomer -= summa
-    while (summa > 0) {
-        delitel *= 10
-        summa -= 1
+    num -= sum
+    while (sum > 0) {
+        divisor *= 10
+        sum -= 1
     }
-    while (nomer != n) {
-        kvadr %= delitel
-        delitel /= 10
-        nomer += 1
+    while (num != n) {
+        sqr %= divisor
+        divisor /= 10
+        sqr += 1
     }
-    return if (delitel.toInt() == 0) kvadr.toInt()
+    return if (divisor.toInt() == 0) sqr.toInt()
     else
-        kvadr.toInt() / delitel.toInt()
+        sqr.toInt() / divisor.toInt()
 }
 
 
