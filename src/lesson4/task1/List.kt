@@ -123,9 +123,8 @@ fun abs(v: List<Double>): Double {
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
 fun mean(list: List<Double>): Double {
-    val sr = list.sum() / list.size
-    return if (sr > 0.0) sr
-    else 0.0
+    if (list.isEmpty()) return 0.0
+    return list.sum() / list.size
 }
 
 /**
@@ -137,9 +136,10 @@ fun mean(list: List<Double>): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun center(list: MutableList<Double>): MutableList<Double> {
-    val element = mean(list)
+    if (list.isEmpty()) return list
+    val mid = mean(list)
     for (i in 0 until list.size) {
-        list[i] -= element
+        list[i] -= mid
     }
     return list
 }
@@ -313,7 +313,45 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
+/*fun toS(n: Int, l: Int, v: Int): String {
+    var n = n
+    val l = n / 1000
+    val v = n % 1000
+    return if (l % 10 == 1) "$l тысяча $v"
+    else "$l тысячи $v"
+    }
+*/
+
 fun russian(n: Int): String = TODO()
+    /*var n = n
+    val listOne = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
+    val listTwo = listOf("двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят",
+            "восемьдесят", "девяносто")
+    val listThree = listOf("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь",
+            "девять", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнацать",
+            "пятнадцать", "шестнадцать", "семьнадцать", "восемьнадцать", "девятнадцать")
+    val num = n.toString()
+    var res = ""
+    toS(n: Int, ) {
+        res += listThree[n % 100]
+        n /= 10
+        if (n % 10 == 1) {
+            res += listThree[n]
+            return res
+        }
+        else{
+            res += listTwo[n % 10]
+            n /= 10
+            if (n != 1 && n != 2) {
+                res += listThree[n]
+            }
+        }
+        else if (){
+
+        }
+    }
+}*/
+
 
 
 
