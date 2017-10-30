@@ -110,11 +110,11 @@ fun buildSumExample(list: List<Int>) = list.joinToString(separator = " + ", post
  * Модуль пустого вектора считать равным 0.0.
  */
 fun abs(v: List<Double>): Double {
-    var dlina = 0.0
+    var long = 0.0
     for (i in v) {
-        dlina += Math.pow(i, 2.0)
+        long += Math.pow(i, 2.0)
     }
-    return sqrt(dlina)
+    return sqrt(long)
 }
 
 /**
@@ -152,11 +152,11 @@ fun center(list: MutableList<Double>): MutableList<Double> {
  * C = a1b1 + a2b2 + ... + aNbN. Произведение пустых векторов считать равным 0.0.
  */
 fun times(a: List<Double>, b: List<Double>): Double {
-    var proizv = 0.0
+    var result = 0.0
     for (i in 0 until a.size) {
-        proizv += a[i] * b[i]
+        result += a[i] * b[i]
     }
-    return proizv
+    return result
 }
 
 /**
@@ -168,11 +168,11 @@ fun times(a: List<Double>, b: List<Double>): Double {
  * Значение пустого многочлена равно 0.0 при любом x.
  */
 fun polynom(p: List<Double>, x: Double): Double {
-    var znach = 0.0
+    var result = 0.0
     for (i in 0 until p.size) {
-        znach += p[i] * Math.pow(x, i.toDouble())
+        result += p[i] * Math.pow(x, i.toDouble())
     }
-    return znach
+    return result
 }
 
 /**
