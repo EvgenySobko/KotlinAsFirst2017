@@ -113,7 +113,7 @@ class Tests {
     @Test
     @Tag("Easy")
     fun maxDivisor() {
-        assertEquals(1, maxDivisor(17))
+        assertEquals(3742039, maxDivisor(7484078))
         assertEquals(12, maxDivisor(24))
         assertEquals(59, maxDivisor(177))
         assertEquals(17, maxDivisor(34))
@@ -199,8 +199,6 @@ class Tests {
     @Test
     @Tag("Hard")
     fun squareSequenceDigit() {
-        assertEquals(1, squareSequenceDigit(1))
-        assertEquals(4, squareSequenceDigit(2))
         assertEquals(5, squareSequenceDigit(7))
         assertEquals(6, squareSequenceDigit(12))
         assertEquals(0, squareSequenceDigit(17))

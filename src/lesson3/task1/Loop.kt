@@ -232,36 +232,17 @@ fun hasDifferentDigits(n: Int): Boolean {
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
 fun squareSequenceDigit(n: Int): Int {
-    var result = 0L
-    var sqr = 0L
     var num = 0
-    var sum = 0
-    var divisor = 1L
-    while (num < n) {
-        result += 1
-        sqr = Math.pow(result.toDouble(), 2.0).toLong()
-        sum = 0
-        while (sqr > 0) {
-            sqr /= 10
-            sum += 1
-        }
-        sqr = Math.pow(result.toDouble(), 2.0).toLong()
-        num += sum
+    var long = 0
+    var long2 = 0
+    while (long < n) {
+        num++
+        long2 = (num * num).toString().length
+        long += long2
     }
-    num -= sum
-    while (sum > 0) {
-        divisor *= 10
-        sum -= 1
-    }
-    while (num != n) {
-        sqr %= divisor
-        divisor /= 10
-        sqr += 1
-    }
-    return if (divisor.toInt() == 0) sqr.toInt()
-    else
-        sqr.toInt() / divisor.toInt()
+    return (num * num).toString()[long2 - long + n - 1].toString().toInt()
 }
+
 
 
 /**

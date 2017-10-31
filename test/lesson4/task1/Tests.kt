@@ -97,10 +97,6 @@ class Tests {
     fun center() {
         assertEquals(listOf<Double>(), center(mutableListOf()))
         assertArrayEquals(
-                listOf(0.0).toDoubleArray(),
-                center(mutableListOf(3.14)).toDoubleArray(),
-                1e-5)
-        assertArrayEquals(
                 listOf(1.0, -1.0, 0.0).toDoubleArray(),
                 center(mutableListOf(3.0, 1.0, 2.0)).toDoubleArray(),
                 1e-5)
@@ -219,6 +215,7 @@ class Tests {
     @Test
     @Tag("Impossible")
     fun russian() {
+        assertEquals("восемьдесяттри", russian(83))
         assertEquals("триста семьдесят пять", russian(375))
         assertEquals("двадцать две тысячи девятьсот шестьдесят четыре", russian(22964))
         assertEquals("сто девятнадцать тысяч пятьсот восемь", russian(119508))
