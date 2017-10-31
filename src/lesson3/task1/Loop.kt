@@ -2,6 +2,8 @@
 
 package lesson3.task1
 
+import java.lang.Math.sqrt
+
 /**
  * Пример
  *
@@ -22,7 +24,7 @@ fun factorial(n: Int): Double {
  */
 fun isPrime(n: Int): Boolean {
     if (n < 2) return false
-    for (m in 2..Math.sqrt(n.toDouble()).toInt()) {
+    for (m in 2..sqrt(n.toDouble()).toInt()) {
         if (n % m == 0) return false
     }
     return true
@@ -121,7 +123,7 @@ fun minDivisor(n: Int): Int {
  */
 fun maxDivisor(n: Int): Int {
     var maxDivisor = 0
-    for (i in n-1 downTo 1) {
+    for (i in n - 1 downTo 1) {
         if (n % i == 0) {
             maxDivisor = i
             break
@@ -137,7 +139,8 @@ fun maxDivisor(n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+fun isCoPrime(m: Int, n: Int): Boolean = (nod(m, n) == 1)
+
 
 /**
  * Простая
@@ -146,7 +149,17 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * то есть, существует ли такое целое k, что m <= k*k <= n.
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
-fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
+fun squareBetweenExists(m: Int, n: Int): Boolean {
+    var m = m
+    var n = n
+    var res = 0.0
+    for (i in m..n) {
+        if (sqrt(i.toDouble()) % 1 < 1e-5) {
+            res = sqrt(m.toDouble())
+        }
+    }
+    return (res != 0.0)
+}
 
 /**
  * Средняя
