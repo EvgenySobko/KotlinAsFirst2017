@@ -3,7 +3,7 @@
 package lesson3.task1
 
 import lesson1.task1.sqr
-import java.lang.Math.*
+import java.lang.Math.sqrt
 
 /**
  * Пример
@@ -83,9 +83,8 @@ fun digitNumber(n: Int): Int {
 fun fib(n: Int): Int {
     var fib1: Int = 0
     var fibSum: Int = 1
-    var fib2: Int = 1
     for (m in 1 until n) {
-        fib2 = fibSum
+        var fib2 = fibSum
         fibSum += fib1
         fib1 = fib2
     }
@@ -112,9 +111,13 @@ fun lcm(m: Int, n: Int) = nok(m, n)
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    var minDivisor = 2
-    while (n % minDivisor != 0) minDivisor++
-    return minDivisor
+    return if (isPrime(n)) {
+        n
+    } else {
+        var minDivisor = 2
+        while (n % minDivisor != 0) minDivisor++
+        minDivisor
+    }
 }
 
 /**
@@ -140,7 +143,7 @@ fun maxDivisor(n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = (nod(m, n) == 1)
+fun isCoPrime(m: Int, n: Int): Boolean = nod(m, n) == 1
 
 
 /**
@@ -150,7 +153,7 @@ fun isCoPrime(m: Int, n: Int): Boolean = (nod(m, n) == 1)
  * то есть, существует ли такое целое k, что m <= k*k <= n.
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
-fun squareBetweenExists(m: Int, n: Int): Boolean = (m <= sqr(sqrt(n.toDouble()).toInt().toDouble()))
+fun squareBetweenExists(m: Int, n: Int): Boolean = m <= sqr(sqrt(n.toDouble()).toInt().toDouble())
         && n >= sqr(sqrt(n.toDouble()).toInt().toDouble())
 
 /**
@@ -194,9 +197,7 @@ fun revert(n: Int): Int {
  * первая цифра равна последней, вторая -- предпоследней и так далее.
  * 15751 -- палиндром, 3653 -- нет.
  */
-fun isPalindrome(n: Int): Boolean {
-    return revert(n) == n
-}
+fun isPalindrome(n: Int): Boolean = revert(n) == n
 
 /**
  * Средняя
@@ -209,8 +210,10 @@ fun hasDifferentDigits(n: Int): Boolean {
     val prom = n % 10
     var failed = true
     while (num > 0) {
-        if (num % 10 != prom) failed = false
-        num /= 10
+        if (num % 10 != prom) {
+            failed = false
+            break
+        } else num /= 10
     }
     return (!failed)
 }
@@ -225,16 +228,19 @@ fun hasDifferentDigits(n: Int): Boolean {
  */
 fun squareSequenceDigit(n: Int): Int {
     var num = 0
-    var long = 0
-    var long2 = 0
-    while (long < n) {
+    var string = 0
+    while (string < n) {
         num++
-        long2 = (num * num).toString().length
-        long += long2
+        val sum2 = digitNumber(num * num)
+        string += sum2
     }
-    return (num * num).toString()[long2 - long + n - 1].toString().toInt()
+    var sqr = num * num
+    while (string > n) {
+        sqr /= 10
+        string -= 1
+    }
+    return sqr % 10
 }
-
 
 
 /**
@@ -244,5 +250,19 @@ fun squareSequenceDigit(n: Int): Int {
  * 1123581321345589144...
  * Например, 2-я цифра равна 1, 9-я 2, 14-я 5.
  */
-fun fibSequenceDigit(n: Int): Int = TODO()
+fun fibSequenceDigit(n: Int): Int {
+    var num = 0
+    var string = 0
+    while (string < n) {
+        num++
+        val row = digitNumber(fib(num))
+        string += row
+    }
+    var fib = fib(num)
+    while (string > n) {
+        fib /= 10
+        string -= 1
+    }
+    return fib % 10
+}
 
