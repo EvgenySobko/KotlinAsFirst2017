@@ -111,9 +111,8 @@ fun lcm(m: Int, n: Int) = nok(m, n)
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    return if (isPrime(n)) {
-        n
-    } else {
+    return if (isPrime(n)) n
+    else {
         var minDivisor = 2
         while (n % minDivisor != 0) minDivisor++
         minDivisor
