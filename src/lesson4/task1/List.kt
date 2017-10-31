@@ -233,9 +233,9 @@ fun factorizeToString(n: Int): String = factorize(n).joinToString("*")
  */
 fun convert(n: Int, base: Int): List<Int> {
     var num = n
-    var rez = listOf<Int>()
     if (num == 0) return listOf(n)
-    else while (num > 0) {
+    var rez = listOf<Int>()
+    while (num > 0) {
         rez += num % base
         num /= base
     }
@@ -323,33 +323,33 @@ fun roman(n: Int): String {
 */
 
 fun russian(n: Int): String = TODO()
-    /*var n = n
-    val listOne = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
-    val listTwo = listOf("двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят",
-            "восемьдесят", "девяносто")
-    val listThree = listOf("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь",
-            "девять", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнацать",
-            "пятнадцать", "шестнадцать", "семьнадцать", "восемьнадцать", "девятнадцать")
-    val num = n.toString()
-    var res = ""
-    toS(n: Int, ) {
-        res += listThree[n % 100]
+/*var n = n
+val listOne = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
+val listTwo = listOf("двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят",
+        "восемьдесят", "девяносто")
+val listThree = listOf("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь",
+        "девять", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнацать",
+        "пятнадцать", "шестнадцать", "семьнадцать", "восемьнадцать", "девятнадцать")
+val num = n.toString()
+var res = ""
+toS(n: Int, ) {
+    res += listThree[n % 100]
+    n /= 10
+    if (n % 10 == 1) {
+        res += listThree[n]
+        return res
+    }
+    else{
+        res += listTwo[n % 10]
         n /= 10
-        if (n % 10 == 1) {
+        if (n != 1 && n != 2) {
             res += listThree[n]
-            return res
-        }
-        else{
-            res += listTwo[n % 10]
-            n /= 10
-            if (n != 1 && n != 2) {
-                res += listThree[n]
-            }
-        }
-        else if (){
-
         }
     }
+    else if (){
+
+    }
+}
 }*/
 
 
