@@ -211,7 +211,7 @@ fun factorize(n: Int): List<Int> {
             num /= count
         } else count += 1
     }
-    return list.sorted()
+    return list
 }
 
 
