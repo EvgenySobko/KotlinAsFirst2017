@@ -250,10 +250,12 @@ fun convert(n: Int, base: Int): List<Int> {
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
+typealias string = StringBuilder
+
 fun convertToString(n: Int, base: Int): String {
     val list = convert(n, base)
     var string = ""
-    if (n == 0) string = ""
+    if (n == 0) string()
     for (i in 0 until list.size) {
         if (list[i] > 9) {
             string += (87 + list[i]).toChar()
