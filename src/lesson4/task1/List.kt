@@ -179,7 +179,7 @@ fun polynom(p: List<Double>, x: Double): Double {
  * Средняя
  *
  * В заданном списке list каждый элемент, кроме первого, заменить
- * суммой данного элемента и всех предыдущих.
+ * суммой данного элемента и  всех предыдущих.
  * Например: 1, 2, 3, 4 -> 1, 3, 6, 10.
  * Пустой список не следует изменять. Вернуть изменённый список.
  *
@@ -250,18 +250,16 @@ fun convert(n: Int, base: Int): List<Int> {
  * строчными буквами: 10 -> a, 11 -> b, 12 -> c и так далее.
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
-typealias string = StringBuilder
-
 fun convertToString(n: Int, base: Int): String {
     val list = convert(n, base)
-    var string = ""
-    if (n == 0) string()
+    var newBaseNum = StringBuilder()
+    if (n == 0) return newBaseNum.toString()
     for (i in 0 until list.size) {
         if (list[i] > 9) {
-            string += (87 + list[i]).toChar()
-        } else string += list[i].toString()
+            newBaseNum.append('W' + list[i])
+        } else newBaseNum.append(list[i].toString())
     }
-    return string
+    return newBaseNum.toString()
 }
 
 /**
@@ -297,14 +295,14 @@ fun roman(n: Int): String {
     val arabicNums = listOf(1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1)
     var num = n
     var i = 0
-    var res = ""
+    var res = StringBuilder()
     while (num > 0) {
         if (arabicNums[i] <= num) {
-            res += romanNums[i]
+            res.append(romanNums[i])
             num -= arabicNums[i]
         } else i += 1
     }
-    return res
+    return res.toString()
 }
 
 
