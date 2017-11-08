@@ -211,7 +211,6 @@ fun hasDifferentDigits(n: Int): Boolean {
     while (num > 0) {
         if (num % 10 != prom) {
             return true
-            break
         } else num /= 10
     }
     return false
