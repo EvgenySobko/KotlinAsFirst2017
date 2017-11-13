@@ -186,10 +186,8 @@ fun polynom(p: List<Double>, x: Double): Double {
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
 fun accumulate(list: MutableList<Double>): MutableList<Double> {
-    var sum = 0.0
-    for (i in 0 until list.size) {
-        sum += list[i]
-        list[i] = sum
+    for (i in 1 until list.size) {
+        list[i] += list[i-1]
     }
     return list
 }
@@ -253,7 +251,6 @@ fun convert(n: Int, base: Int): List<Int> {
 fun convertToString(n: Int, base: Int): String {
     val list = convert(n, base)
     var newBaseNum = StringBuilder()
-    if (n == 0) return newBaseNum.toString() + "0"
     for (i in 0 until list.size) {
         if (list[i] > 9) {
             newBaseNum.append('W' + list[i])
@@ -312,40 +309,8 @@ fun roman(n: Int): String {
  * Записать заданное натуральное число 1..999999 прописью по-русски.
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
-*/
+ */
 fun russian(n: Int): String = TODO()
-
-/*
-    val listOne = listOf("сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
-    val listTwo = listOf("двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят",
-            "восемьдесят", "девяносто")
-    val listThree = listOf("один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь",
-            "девять", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнацать",
-            "пятнадцать", "шестнадцать", "семьнадцать", "восемьнадцать", "девятнадцать")
-    var res = ""
-    var numPart1 = n / 1000
-    var numPart2 = n % 1000
-    if (numPart1 == 0) {
-        if (numPart2 % 100 in 0 until 20)
-            res += listOne[numPart2 / 100] + " " + listThree[numPart2 % 100]
-        else
-            res += listOne[numPart2 / 100] + " " + listTwo[numPart2 / 10 % 10] + " " + listThree[numPart2 % 10]
-    } else {
-        if (numPart1 % 100 in 0 until 20)
-            if (numPart1 % 10 == 1) {
-                listOne[numPart1 / 100] + " " + "одна тысяча" + res
-            }else if (numPart1 % 10 == 2 || numPart1 % 10 == 3 && numPart1 < 10) {
-                listThree[numPart1 % 100] + " " + listOne[numPart1 / 100] + "две тысячи" + res
-            }else
-                listThree[numPart1 % 100] + " " + listOne[numPart1 / 100] + "тысяч" + res
-            else
-                listTwo[numPart1 / 10 % 10] + " " + listThree[numPart1 % 10] + " " + listOne[numPart1 / 100] + res
-
-            }
-    }
-}
-*/
-
 
 
 

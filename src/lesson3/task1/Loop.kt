@@ -2,7 +2,6 @@
 
 package lesson3.task1
 
-import lesson1.task1.sqr
 import java.lang.Math.sqrt
 
 /**
@@ -81,10 +80,10 @@ fun digitNumber(n: Int): Int {
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
 fun fib(n: Int): Int {
-    var fib1: Int = 0
-    var fibSum: Int = 1
+    var fib1 = 0
+    var fibSum = 1
     for (m in 1 until n) {
-        var fib2 = fibSum
+        val fib2 = fibSum
         fibSum += fib1
         fib1 = fib2
     }
@@ -98,12 +97,9 @@ fun fib(n: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun nod(a: Int, b: Int): Int = if (a != 0) nod(b % a, a) else b
+fun gcd(a: Int, b: Int): Int = if (a != 0) gcd(b % a, a) else b
 
-fun nok(a: Int, b: Int) = a / nod(a, b) * b
-
-fun lcm(m: Int, n: Int) = nok(m, n)
-
+fun lcm(m: Int, n: Int) = m / gcd(m, n) * n
 
 /**
  * Простая
@@ -124,16 +120,7 @@ fun minDivisor(n: Int): Int {
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int {
-    var maxDivisor = 0
-    for (i in n - 1 downTo 1) {
-        if (n % i == 0) {
-            maxDivisor = i
-            break
-        }
-    }
-    return maxDivisor
-}
+fun maxDivisor(n: Int): Int = n / minDivisor(n)
 
 /**
  * Простая
@@ -142,7 +129,7 @@ fun maxDivisor(n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = nod(m, n) == 1
+fun isCoPrime(m: Int, n: Int): Boolean = gcd(m, n) == 1
 
 
 /**
@@ -154,7 +141,7 @@ fun isCoPrime(m: Int, n: Int): Boolean = nod(m, n) == 1
  */
 fun squareBetweenExists(m: Int, n: Int): Boolean =
         Math.ceil(sqrt(m.toDouble())) <=
-        Math.floor(sqrt(n.toDouble()))
+                Math.floor(sqrt(n.toDouble()))
 
 /**
  * Средняя
@@ -226,15 +213,15 @@ fun hasDifferentDigits(n: Int): Boolean {
  */
 fun squareSequenceDigit(n: Int): Int {
     var num = 0
-    var string = 0
-    while (string < n) {
+    var result = 0
+    while (result < n) {
         num++
-        string += digitNumber(num * num)
+        result += digitNumber(num * num)
     }
     var sqr = num * num
-    while (string > n) {
+    while (result > n) {
         sqr /= 10
-        string--
+        result--
     }
     return sqr % 10
 }
@@ -249,15 +236,15 @@ fun squareSequenceDigit(n: Int): Int {
  */
 fun fibSequenceDigit(n: Int): Int {
     var num = 0
-    var string = 0
-    while (string < n) {
+    var result = 0
+    while (result < n) {
         num++
-        string += digitNumber(fib(num))
+        result += digitNumber(fib(num))
     }
     var fib = fib(num)
-    while (string > n) {
+    while (result > n) {
         fib /= 10
-        string--
+        result--
     }
     return fib % 10
 }
