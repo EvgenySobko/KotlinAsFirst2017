@@ -319,7 +319,7 @@ fun russian(n: Int): String {
             "пять", "шесть", "семь", "восемь", "девять")
     var listOfUnitsThousands = listOf("одна тысяча", "две тысячи", "три тысячи", "четыре тысячи",
             "пять тысяч", "шесть тысяч", "семь тысяч", "восемь тысяч", "девять тысяч")
-    val listUnderTwenty = listOf("десять", "одинадцать", "двенадцать", "тринадцать", "четырнадцать",
+    val listUnderTwenty = listOf("десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать",
             "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать")
     var result = ""
     var firstHalfOfNumber = n / 1000
@@ -365,13 +365,13 @@ fun russian(n: Int): String {
         result = listUnderTwenty[firstHalfOfNumber % 10] + " тысяч " + result
     }
 
-    if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 >= 20 && firstHalfOfNumber % 1000 < 100) {
+    if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 >= 20 && firstHalfOfNumber % 1000 <= 100) {
         result = listOfTens[firstHalfOfNumber % 100 / 10 - 2] + " " +
                 listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
     }
-
     if (firstHalfOfNumber % 1000 >= 100 && firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 >= 20) {
-        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 2] + " " + listOfTens[firstHalfOfNumber % 100 / 10 - 2] + " " +
+        result = listOfHundreeds[firstHalfOfNumber % 1000 / 100 - 1] +
+                " " + listOfTens[firstHalfOfNumber % 100 / 10 - 2] + " " +
                 listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
     }
 
