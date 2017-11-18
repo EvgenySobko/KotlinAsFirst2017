@@ -403,6 +403,13 @@ fun russian(n: Int): String {
     if (firstHalfOfNumber % 10 == 0 && firstHalfOfNumber % 100 == 0 && firstHalfOfNumber != 0 && result == "") {
         result = listOfHundreeds[firstHalfOfNumber / 100 - 1] + " тысяч"
     }
+    if (firstHalfOfNumber % 1000 >= 100 && firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 < 10) {
+        if (result == "") {
+            result = listOfHundreeds[firstHalfOfNumber % 1000 / 100 - 1] +
+                    " " + listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + result
+        }else result = listOfHundreeds[firstHalfOfNumber % 1000 / 100 - 1] +
+                " " + listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
+    }
     return result
 }
 
