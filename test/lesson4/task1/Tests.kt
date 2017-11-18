@@ -174,7 +174,7 @@ class Tests {
     @Test
     @Tag("Hard")
     fun convertToString() {
-        assertEquals("1", convertToString(1, 2))
+        assertEquals("0", convertToString(0, 24))
         assertEquals("1210", convertToString(100, 4))
         assertEquals("13c", convertToString(250, 14))
         assertEquals("2ec", convertToString(1000, 19))
@@ -215,13 +215,13 @@ class Tests {
     @Test
     @Tag("Impossible")
     fun russian() {
-        assertEquals("восемьдесяттри", russian(83))
+        assertEquals("сто семнадцать", russian(117))
         assertEquals("триста семьдесят пять", russian(375))
         assertEquals("двадцать две тысячи девятьсот шестьдесят четыре", russian(22964))
         assertEquals("сто девятнадцать тысяч пятьсот восемь", russian(119508))
         assertEquals("две тысячи три", russian(2003))
         assertEquals("двести тысяч два", russian(200002))
-        assertEquals("девятьсот тысяч", russian(900000))
+        assertEquals("девятьсот тысяч тридцать семь", russian(900037))
         assertEquals("двенадцать", russian(12))
     }
 }

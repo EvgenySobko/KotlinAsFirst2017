@@ -65,7 +65,23 @@ fun main(args: Array<String>) {
  * День и месяц всегда представлять двумя цифрами, например: 03.04.2011.
  * При неверном формате входной строки вернуть пустую строку
  */
-fun dateStrToDigit(str: String): String = TODO()
+val months = listOf("января", "февраля", "марта", "апреля", "мая", "июня", "июля",
+        "августа", "сентября", "октября", "ноября", "декабря")
+
+
+fun dateStrToDigit(str: String): String {
+    val parts = str.split(" ")
+    var result = StringBuilder()
+    val num: Int
+    try {
+        if (parts.size != 3 || months.indexOf(parts[1]) == -1) return result.toString()
+        else
+            num = months.indexOf(parts[1]) + 1
+        return String.format("%02d.%02d.%d", parts[0].toInt(), num, parts[2].toInt())
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+}
 
 /**
  * Средняя
@@ -74,7 +90,19 @@ fun dateStrToDigit(str: String): String = TODO()
  * Перевести её в строковый формат вида "15 июля 2016".
  * При неверном формате входной строки вернуть пустую строку
  */
-fun dateDigitToStr(digital: String): String = TODO()
+fun dateDigitToStr(digital: String): String {
+    val parts = digital.split(".")
+    var result = ""
+    try {
+        if (parts.size != 3 || parts[1].toInt() !in 1..12) return result
+        else {
+            result += months[parts[1].toInt() - 1]
+        }
+        return String.format("%d %s %d", parts[0].toInt(), result, parts[2].toInt())
+    } catch (e: NumberFormatException) {
+        return ""
+    }
+}
 
 /**
  * Средняя
@@ -88,7 +116,14 @@ fun dateDigitToStr(digital: String): String = TODO()
  * Все символы в номере, кроме цифр, пробелов и +-(), считать недопустимыми.
  * При неверном формате вернуть пустую строку
  */
-fun flattenPhoneNumber(phone: String): String = TODO()
+fun flattenPhoneNumber(phone: String): String {
+    val phoneNum = Regex("""\+|\(|\)|-|\s""").replace(phone, "")
+    return when {
+        phoneNum.contains(Regex("""\D""")) -> ""
+        phone.contains(Regex("""\+""")) -> "+" + phoneNum
+        else -> phoneNum
+    }
+}
 
 /**
  * Средняя
@@ -100,7 +135,21 @@ fun flattenPhoneNumber(phone: String): String = TODO()
  * Прочитать строку и вернуть максимальное присутствующее в ней число (717 в примере).
  * При нарушении формата входной строки или при отсутствии в ней чисел, вернуть -1.
  */
-fun bestLongJump(jumps: String): Int = TODO()
+fun bestLongJump(jumps: String): Int {
+    val lengths = jumps.split(" ")
+    val results = lengths.filter { it != "%" && it != " " && it != "-" }.toList()
+    var control = -1
+    for (result in results) {
+        try {
+            if (result.toInt() >= control) {
+                control = result.toInt()
+            }
+        } catch (e: NumberFormatException) {
+            return -1
+        }
+    }
+    return control
+}
 
 /**
  * Сложная
@@ -113,7 +162,6 @@ fun bestLongJump(jumps: String): Int = TODO()
  * При нарушении формата входной строки вернуть -1.
  */
 fun bestHighJump(jumps: String): Int = TODO()
-
 /**
  * Сложная
  *
@@ -124,6 +172,7 @@ fun bestHighJump(jumps: String): Int = TODO()
  * Про нарушении формата входной строки бросить исключение IllegalArgumentException
  */
 fun plusMinus(expression: String): Int = TODO()
+
 
 /**
  * Сложная

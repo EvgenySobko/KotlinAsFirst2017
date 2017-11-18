@@ -187,7 +187,7 @@ fun polynom(p: List<Double>, x: Double): Double {
  */
 fun accumulate(list: MutableList<Double>): MutableList<Double> {
     for (i in 1 until list.size) {
-        list[i] += list[i-1]
+        list[i] += list[i - 1]
     }
     return list
 }
@@ -310,7 +310,84 @@ fun roman(n: Int): String {
  * Например, 375 = "триста семьдесят пять",
  * 23964 = "двадцать три тысячи девятьсот шестьдесят четыре"
  */
-fun russian(n: Int): String = TODO()
+fun russian(n: Int): String {
+    val listOfHundreeds = listOf("сто", "двести", "триста", "четыреста",
+            "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот")
+    val listOfTens = listOf("двадцать", "тридцать", "сорок", "пятьдесят",
+            "шестьдесят", "семьдесят", "восемьдесят", "девяносто")
+    val listOfUnits = listOf("один", "два", "три", "четыре",
+            "пять", "шесть", "семь", "восемь", "девять")
+    var listOfUnitsThousands = listOf("одна тысяча", "две тысячи", "три тысячи", "четыре тысячи",
+            "пять тысяч", "шесть тысяч", "семь тысяч", "восемь тысяч", "девять тысяч")
+    val listUnderTwenty = listOf("десять", "одинадцать", "двенадцать", "тринадцать", "четырнадцать",
+            "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать")
+    var result = ""
+    var firstHalfOfNumber = n / 1000
+    var secondHalfOfNumber = n % 1000
+    if (n == 0) return "ноль"
+    if (secondHalfOfNumber % 10 > 0 && secondHalfOfNumber % 100 < 10 && secondHalfOfNumber % 1000 < 100) {
+        result = listOfUnits[secondHalfOfNumber % 10 - 1]
+    }
 
+    if (secondHalfOfNumber % 10 > 0 && secondHalfOfNumber % 100 in 10..19) {
+        result = listUnderTwenty[secondHalfOfNumber % 10]
+    }
+
+    if (secondHalfOfNumber % 10 > 0 && secondHalfOfNumber % 100 >= 20) {
+        result = listOfTens[secondHalfOfNumber % 100 / 10 - 2] + " " + listOfUnits[secondHalfOfNumber % 10 - 1]
+    }
+
+    if (secondHalfOfNumber % 10 > 0 && secondHalfOfNumber % 1000 >= 100
+            && secondHalfOfNumber % 100 >= 20) {
+
+        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + " " +
+                listOfTens[secondHalfOfNumber % 100 / 10 - 2] + " " + listOfUnits[secondHalfOfNumber % 10 - 1]
+    }
+
+    if (secondHalfOfNumber % 10 > 0 && secondHalfOfNumber % 1000 >= 100
+            && secondHalfOfNumber % 100 < 10) {
+
+        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + " " + listOfUnits[secondHalfOfNumber % 10 - 1]
+    }
+
+    if (secondHalfOfNumber % 10 > 0 && secondHalfOfNumber % 100 in 10..19 && secondHalfOfNumber % 1000 >= 100) {
+        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + " " + listUnderTwenty[secondHalfOfNumber % 10]
+    }
+
+
+
+
+    if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 < 10 && firstHalfOfNumber % 1000 < 100) {
+        result = listOfUnitsThousands[secondHalfOfNumber % 10 - 2] + " " + result
+    }
+
+    if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 in 10..19) {
+        result = listUnderTwenty[firstHalfOfNumber % 10] + " тысяч " + result
+    }
+
+    if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 >= 20) {
+        result = listOfTens[firstHalfOfNumber % 100 / 10 - 2] + " " +
+                listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
+    }
+
+    if (firstHalfOfNumber % 1000 >= 100 && firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 >= 20) {
+        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + listOfTens[firstHalfOfNumber % 100 / 10 - 2] + " " +
+                listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
+    }
+
+    if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 in 10..19 && firstHalfOfNumber % 1000 >= 100) {
+        result = listOfHundreeds[firstHalfOfNumber % 1000 / 100 - 1] + " " + result
+    }
+
+    if (firstHalfOfNumber % 10 == 0 && firstHalfOfNumber % 100 == 0 && firstHalfOfNumber != 0 && result != "") {
+        result = listOfHundreeds[firstHalfOfNumber / 100 - 1] + " тысяч " + result
+    }
+
+    if (firstHalfOfNumber % 10 == 0 && firstHalfOfNumber % 100 == 0 && firstHalfOfNumber != 0 && result == "") {
+        result = listOfHundreeds[firstHalfOfNumber / 100 - 1] + " тысяч"
+    }
+
+    return result
+}
 
 
