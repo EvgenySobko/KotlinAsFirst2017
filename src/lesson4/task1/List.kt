@@ -357,7 +357,7 @@ fun russian(n: Int): String {
     if (secondHalfOfNumber % 10 == 0 && secondHalfOfNumber % 1000 >= 100
             && secondHalfOfNumber % 100 >= 20) {
 
-        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + " " + result
+        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + " " + listOfTens[secondHalfOfNumber % 10]
     }
 
     if (secondHalfOfNumber % 10 > 0 && secondHalfOfNumber % 100 in 10..19 && secondHalfOfNumber % 1000 >= 100) {
@@ -368,7 +368,7 @@ fun russian(n: Int): String {
 
 
     if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 < 10 && firstHalfOfNumber % 1000 < 100) {
-        result = listOfUnitsThousands[secondHalfOfNumber % 10 - 2] + " " + result
+        result = listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
     }
 
     if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 in 10..19) {
