@@ -357,11 +357,14 @@ fun russian(n: Int): String {
     if (secondHalfOfNumber % 10 == 0 && secondHalfOfNumber % 1000 >= 100
             && secondHalfOfNumber % 100 >= 20) {
 
-        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + " " + listOfTens[secondHalfOfNumber % 10]
+        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + " " + result
     }
 
     if (secondHalfOfNumber % 10 > 0 && secondHalfOfNumber % 100 in 10..19 && secondHalfOfNumber % 1000 >= 100) {
         result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + " " + listUnderTwenty[secondHalfOfNumber % 10]
+    }
+    if (secondHalfOfNumber % 10 == 0 && secondHalfOfNumber % 100 == 0 && secondHalfOfNumber % 1000 >= 100) {
+        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1]
     }
 
 
