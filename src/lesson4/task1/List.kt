@@ -365,13 +365,13 @@ fun russian(n: Int): String {
         result = listUnderTwenty[firstHalfOfNumber % 10] + " тысяч " + result
     }
 
-    if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 >= 20) {
+    if (firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 >= 20 && firstHalfOfNumber % 1000 < 100) {
         result = listOfTens[firstHalfOfNumber % 100 / 10 - 2] + " " +
                 listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
     }
 
     if (firstHalfOfNumber % 1000 >= 100 && firstHalfOfNumber % 10 > 0 && firstHalfOfNumber % 100 >= 20) {
-        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 1] + listOfTens[firstHalfOfNumber % 100 / 10 - 2] + " " +
+        result = listOfHundreeds[secondHalfOfNumber % 1000 / 100 - 2] + " " + listOfTens[firstHalfOfNumber % 100 / 10 - 2] + " " +
                 listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
     }
 
