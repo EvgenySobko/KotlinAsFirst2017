@@ -410,6 +410,9 @@ fun russian(n: Int): String {
         }else result = listOfHundreeds[firstHalfOfNumber % 1000 / 100 - 1] +
                 " " + listOfUnitsThousands[firstHalfOfNumber % 10 - 1] + " " + result
     }
+    if (firstHalfOfNumber % 100 == 10){
+        result = listOfHundreeds[firstHalfOfNumber % 1000 / 100 - 1] + " десять тысяч " + result
+    }
     return result
 }
 
