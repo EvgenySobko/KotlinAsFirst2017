@@ -348,14 +348,14 @@ fun helpForRussian(partOfNum: Int, flag: Int): String {
 }
 
 fun russian(n: Int): String {
-    var thousands = listOf("тысяча ", "тысяч ", "тысячи ")
+    var thousands = listOf("тысяча ", "тысячи ", "тысяч ")
     var result = helpForRussian(n % 1000, 1)
     if (n > 999) {
         result = when {
-            (n % 100000) / 1000 in 10..19 -> thousands[1] + result
             (n % 10000) / 1000 == 1 -> thousands[0] + result
-            (n % 10000) / 1000 in 2..4 -> thousands[2] + result
-            else -> thousands[1] + result
+            (n % 10000) / 1000 in 2..4 -> thousands[1] + result
+            (n % 100000) / 1000 in 10..19 -> thousands[2] + result
+            else -> thousands[2] + result
         }
         result = helpForRussian(n / 1000, 2) + result
     }
