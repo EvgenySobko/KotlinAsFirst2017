@@ -120,7 +120,7 @@ fun flattenPhoneNumber(phone: String): String {
     val phoneNum = Regex("""\+|\(|\)|-|\s""").replace(phone, "")
     return when {
         phoneNum.contains(Regex("""\D""")) -> ""
-        phone.contains(Regex("""\+""")) -> "+" + phoneNum
+        phone.contains(Regex("""\+.""")) -> "+" + phoneNum
         else -> phoneNum
     }
 }
@@ -189,7 +189,7 @@ fun plusMinus(expression: String): Int = TODO()
  */
 fun firstDuplicateIndex(str: String): Int {
     var newString = Regex("""([а-я]+) \1""").find(str.toLowerCase())
-    return newString?.range?.first?: -1
+    return newString?.range?.first ?: -1
 }
 /**
  * Сложная
