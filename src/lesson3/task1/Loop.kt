@@ -107,13 +107,12 @@ fun lcm(m: Int, n: Int) = m / gcd(m, n) * n
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    return if (isPrime(n)) n
-    else {
-        var minDivisor = 2
-        while (n % minDivisor != 0) minDivisor++
-        minDivisor
+    for (minDivisor in 2..sqrt(n.toDouble()).toInt()) {
+        if (n % minDivisor == 0) return minDivisor
     }
+    return n
 }
+
 
 /**
  * Простая
@@ -211,6 +210,19 @@ fun hasDifferentDigits(n: Int): Boolean {
  * 149162536496481100121144...
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
+fun helpForHard (n: Int, result: Int, find: Int): Int {
+    var find = find
+    var n = n
+    var result = result
+    while (result > n) {
+        find /= 10
+        result--
+    }
+    return find % 10
+}
+
+
+
 fun squareSequenceDigit(n: Int): Int {
     var num = 0
     var result = 0
@@ -219,11 +231,8 @@ fun squareSequenceDigit(n: Int): Int {
         result += digitNumber(num * num)
     }
     var sqr = num * num
-    while (result > n) {
-        sqr /= 10
-        result--
-    }
-    return sqr % 10
+    sqr = helpForHard(n, result, sqr)
+    return sqr
 }
 
 
@@ -242,10 +251,7 @@ fun fibSequenceDigit(n: Int): Int {
         result += digitNumber(fib(num))
     }
     var fib = fib(num)
-    while (result > n) {
-        fib /= 10
-        result--
-    }
-    return fib % 10
+    fib = helpForHard(n, result, fib)
+    return fib
 }
 

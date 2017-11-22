@@ -249,12 +249,12 @@ fun convert(n: Int, base: Int): List<Int> {
  * Например: n = 100, base = 4 -> 1210, n = 250, base = 14 -> 13c
  */
 fun convertToString(n: Int, base: Int): String {
-    val list = convert(n, base)
+    val listOfNum = convert(n, base)
     var newBaseNum = StringBuilder()
-    for (i in 0 until list.size) {
-        if (list[i] > 9) {
-            newBaseNum.append('W' + list[i])
-        } else newBaseNum.append(list[i].toString())
+    for (i in 0 until listOfNum.size) {
+        if (listOfNum[i] > 9) {
+            newBaseNum.append ('W' + listOfNum[i])
+        } else newBaseNum.append (listOfNum[i].toString())
     }
     return newBaseNum.toString()
 }
@@ -332,15 +332,11 @@ fun helpForRussian(partOfNum: Int, flag: Int): String {
             result += listOfUnitsThousands[partOfNum[0]]
         }
     }
-
-
     if (partOfNum.size >= 2) {
         result = if (partOfNum[1] == 1) {
             listUnderTwenty[partOfNum[0]]
         } else listOfTens[partOfNum[1]] + result
     }
-
-
     if (partOfNum.size >= 3) {
         result = listOfHundreeds[partOfNum[2]] + result
     }
