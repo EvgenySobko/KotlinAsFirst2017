@@ -254,7 +254,10 @@ fun convertToString(n: Int, base: Int): String {
     for (i in 0 until listOfNum.size) {
         if (listOfNum[i] > 9) {
             newBaseNum.append ('W' + listOfNum[i])
-        } else newBaseNum.append (listOfNum[i].toString())
+        }
+        else {
+            newBaseNum.append (listOfNum[i].toString())
+        }
     }
     return newBaseNum.toString()
 }

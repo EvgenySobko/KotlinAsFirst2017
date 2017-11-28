@@ -2,7 +2,6 @@
 package lesson6.task1
 
 import lesson1.task1.sqr
-import lesson4.task1.center
 import java.lang.IllegalArgumentException
 
 /**
@@ -104,6 +103,7 @@ data class Segment(val begin: Point, val end: Point) {
  * Дано множество точек. Вернуть отрезок, соединяющий две наиболее удалённые из них.
  * Если в множестве менее двух точек, бросить IllegalArgumentException
  */
+
 fun diameter(vararg points: Point): Segment = TODO()
 
 /**

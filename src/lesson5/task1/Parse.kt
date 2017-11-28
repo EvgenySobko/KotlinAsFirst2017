@@ -75,11 +75,11 @@ fun dateStrToDigit(str: String): String {
         if (parts.size != 3 || months.indexOf(parts[1]) == -1) {
             return ""
         }
-        val num = months.indexOf(parts[1]) + 1
-        return String.format("%02d.%02d.%d", parts[0].toInt(), num, parts[2].toInt())
     } catch (e: NumberFormatException) {
         return ""
     }
+    val num = months.indexOf(parts[1]) + 1
+    return String.format("%02d.%02d.%d", parts[0].toInt(), num, parts[2].toInt())
 }
 
 /**
@@ -91,16 +91,16 @@ fun dateStrToDigit(str: String): String {
  */
 fun dateDigitToStr(digital: String): String {
     val parts = digital.split(".")
+    var result = StringBuilder()
     try {
-        var result = StringBuilder()
         if (parts.size != 3 || parts[1].toInt() !in 1..12) {
             return ""
         }
-        result.append(months[parts[1].toInt() - 1])
-        return String.format("%d %s %d", parts[0].toInt(), result, parts[2].toInt())
     } catch (e: NumberFormatException) {
         return ""
     }
+    result.append(months[parts[1].toInt() - 1])
+    return String.format("%d %s %d", parts[0].toInt(), result, parts[2].toInt())
 }
 
 /**
@@ -178,20 +178,19 @@ fun bestHighJump(jumps: String): Int {
 fun plusMinus(expression: String): Int {
     val summands = expression.split(" ")
     try {
-        var result = summands[0].toInt()
-        var result2 = 0
-        for (i in 1 until summands.size step 2) {
-            if (summands[i] == "+") {
-                result += summands[i + 1].toInt()
-            }
-            if (summands[i] == "-") {
-                result2 += summands[i + 1].toInt()
-            }
-        }
-        return result - result2
-    } catch (e: Exception) {
+    } catch (e: IllegalArgumentException) {
         throw IllegalArgumentException()
     }
+    var result = summands[0].toInt()
+    for (i in 1 until summands.size step 2) {
+        if (summands[i] == "+") {
+            result += summands[i + 1].toInt()
+        }
+        if (summands[i] == "-") {
+            result -= summands[i + 1].toInt()
+        }
+    }
+    return result
 }
 
 
@@ -221,14 +220,14 @@ fun mostExpensive(description: String): String {
     var parts = description.split("; ", " ")
     var max = 1
     try {
-        for (part in 1..parts.size step 2) {
+        for (part in 1 until parts.size step 2) {
             if (parts[part].toDouble() > parts[max].toDouble()) {
                 max = part
             }
         }
         return parts[max - 1]
     }
-    catch (e: Exception) {
+    catch (e: NumberFormatException) {
         return ""
     }
 }

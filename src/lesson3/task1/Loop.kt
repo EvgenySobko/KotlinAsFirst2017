@@ -210,13 +210,12 @@ fun hasDifferentDigits(n: Int): Boolean {
  * 149162536496481100121144...
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
-fun helpForHard (n: Int, result: Int, find: Int): Int {
+fun helpForHard (n: Int, flag: Int, find: Int): Int {
     var find = find
-    var n = n
-    var result = result
-    while (result > n) {
+    var flag = flag
+    while (flag > n) {
         find /= 10
-        result--
+        flag--
     }
     return find % 10
 }
@@ -225,14 +224,13 @@ fun helpForHard (n: Int, result: Int, find: Int): Int {
 
 fun squareSequenceDigit(n: Int): Int {
     var num = 0
-    var result = 0
-    while (result < n) {
+    var flag = 0
+    while (flag < n) {
         num++
-        result += digitNumber(num * num)
+        flag += digitNumber(num * num)
     }
     var sqr = num * num
-    sqr = helpForHard(n, result, sqr)
-    return sqr
+    return helpForHard(n, flag, sqr)
 }
 
 
@@ -245,13 +243,12 @@ fun squareSequenceDigit(n: Int): Int {
  */
 fun fibSequenceDigit(n: Int): Int {
     var num = 0
-    var result = 0
-    while (result < n) {
+    var flag = 0
+    while (flag < n) {
         num++
-        result += digitNumber(fib(num))
+        flag += digitNumber(fib(num))
     }
     var fib = fib(num)
-    fib = helpForHard(n, result, fib)
-    return fib
+    return helpForHard(n, flag, fib)
 }
 
