@@ -177,18 +177,19 @@ fun bestHighJump(jumps: String): Int {
  */
 fun plusMinus(expression: String): Int {
     val summands = expression.split(" ")
-    try {
-    } catch (e: IllegalArgumentException) {
-        throw IllegalArgumentException()
-    }
     var result = summands[0].toInt()
-    for (i in 1 until summands.size step 2) {
-        if (summands[i] == "+") {
-            result += summands[i + 1].toInt()
+    try {
+        for (i in 1 until summands.size step 2) {
+            if (summands[i] == "+") {
+                result += summands[i + 1].toInt()
+            }
+            if (summands[i] == "-") {
+                result -= summands[i + 1].toInt()
+            }
+
         }
-        if (summands[i] == "-") {
-            result -= summands[i + 1].toInt()
-        }
+    }catch (e: IllegalArgumentException) {
+        throw IllegalArgumentException()
     }
     return result
 }
