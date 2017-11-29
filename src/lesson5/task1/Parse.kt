@@ -91,7 +91,7 @@ fun dateStrToDigit(str: String): String {
  */
 fun dateDigitToStr(digital: String): String {
     val parts = digital.split(".")
-    var result = StringBuilder()
+    val result = StringBuilder()
     try {
         if (parts.size != 3 || parts[1].toInt() !in 1..12) {
             return ""
@@ -188,7 +188,7 @@ fun plusMinus(expression: String): Int {
             }
 
         }
-    }catch (e: IllegalArgumentException) {
+    }catch (e: NumberFormatException) {
         throw IllegalArgumentException()
     }
     return result
@@ -218,18 +218,17 @@ fun firstDuplicateIndex(str: String): Int = TODO()
  * Все цены должны быть положительными
  */
 fun mostExpensive(description: String): String {
-    var parts = description.split("; ", " ")
+    val parts = description.split("; ", " ")
     var max = 1
-    try {
+    return try {
         for (part in 1 until parts.size step 2) {
             if (parts[part].toDouble() > parts[max].toDouble()) {
                 max = part
             }
         }
-        return parts[max - 1]
-    }
-    catch (e: NumberFormatException) {
-        return ""
+        parts[max - 1]
+    } catch (e: NumberFormatException) {
+        ""
     }
 }
 

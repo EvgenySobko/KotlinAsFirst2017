@@ -104,7 +104,22 @@ data class Segment(val begin: Point, val end: Point) {
  * Если в множестве менее двух точек, бросить IllegalArgumentException
  */
 
-fun diameter(vararg points: Point): Segment = TODO()
+fun diameter(vararg points: Point): Segment {
+    if (points.size < 2) {
+        throw IllegalArgumentException()
+    }
+    var maxPair = Pair(0, 0)
+    var max = -1.0
+    for (a in 0 until points.size) {
+        for (b in a + 1 until points.size) {
+            if (points[a].distance(points[b]) > max) {
+                max = points[a].distance(points[b])
+                maxPair = Pair(a, b)
+            }
+        }
+    }
+    return Segment(points[maxPair.first], points[maxPair.second])
+}
 
 /**
  * Простая
