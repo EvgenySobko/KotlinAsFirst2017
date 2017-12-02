@@ -4,7 +4,7 @@ package lesson6.task2
 
 import java.lang.Math.abs
 import java.lang.Math.max
-val letters = listOf("a", "b", "c", "d", "e", "f", "g", "h")
+val letters = listOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
 fun checking(start: Square, end: Square) {
     if (!start.inside() || !end.inside()) {
         throw IllegalArgumentException()
@@ -47,12 +47,12 @@ data class Square(val column: Int, val row: Int) {
  * Если нотация некорректна, бросить IllegalArgumentException
  */
 fun square(notation: String): Square {
-    val column = notation[0].toString()
-    val row = notation[1].toString().toInt()
-    if ((notation.length != 2) || (column !in letters) || (row !in 1..8)) {
+    val column = notation[0]
+    val row = notation[1]
+    if ((notation.length != 2) || (column !in letters) || (row !in '1'..'8')) {
         throw IllegalArgumentException()
     } else {
-        return Square(letters.indexOf(column) + 1, row)
+        return Square(letters.indexOf(column) + 1, row.toInt() - '0'.toInt())
     }
 }
 
