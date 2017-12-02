@@ -49,7 +49,7 @@ data class Square(val column: Int, val row: Int) {
 fun square(notation: String): Square {
     val column = notation[0]
     val row = notation[1]
-    if ((notation.length != 2) || (column !in letters) || (row !in '1'..'8')) {
+    if ((notation.length != 2) || (column !in letters) || (row !in '1'..'8') || (notation == "")) {
         throw IllegalArgumentException()
     } else {
         return Square(letters.indexOf(column) + 1, row.toInt() - '0'.toInt())
