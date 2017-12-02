@@ -47,12 +47,10 @@ data class Square(val column: Int, val row: Int) {
  * Если нотация некорректна, бросить IllegalArgumentException
  */
 fun square(notation: String): Square {
-    val column = notation[0]
-    val row = notation[1]
-    if ((notation.length != 2) || (column !in letters) || (row !in '1'..'8') || (notation == "")) {
+    if ((notation.length != 2) || (notation[0] !in letters) || (notation[1] !in '1'..'8')) {
         throw IllegalArgumentException()
     } else {
-        return Square(letters.indexOf(column) + 1, row.toInt() - '0'.toInt())
+        return Square(letters.indexOf(notation[0]) + 1, notation[1].toInt() - '0'.toInt())
     }
 }
 
