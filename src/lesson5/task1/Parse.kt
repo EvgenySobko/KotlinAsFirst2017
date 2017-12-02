@@ -71,11 +71,7 @@ val months = listOf("января", "февраля", "марта", "апрел�
 
 fun dateStrToDigit(str: String): String {
     val parts = str.split(" ")
-    try {
-        if (parts.size != 3 || months.indexOf(parts[1]) == -1) {
-            return ""
-        }
-    } catch (e: NumberFormatException) {
+    if (parts.size != 3 || months.indexOf(parts[1]) == -1) {
         return ""
     }
     val num = months.indexOf(parts[1]) + 1
@@ -92,8 +88,11 @@ fun dateStrToDigit(str: String): String {
 fun dateDigitToStr(digital: String): String {
     val parts = digital.split(".")
     val result = StringBuilder()
+    if (parts.size != 3) {
+        return ""
+    }
     try {
-        if (parts.size != 3 || parts[1].toInt() !in 1..12) {
+        if (parts[1].toInt() !in 1..12) {
             return ""
         }
     } catch (e: NumberFormatException) {
