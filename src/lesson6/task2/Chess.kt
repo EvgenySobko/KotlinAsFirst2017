@@ -4,6 +4,7 @@ package lesson6.task2
 
 import java.lang.Math.abs
 import java.lang.Math.max
+
 val letters = listOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
 fun checking(start: Square, end: Square) {
     if (!start.inside() || !end.inside()) {
@@ -100,12 +101,10 @@ fun rookMoveNumber(start: Square, end: Square): Int {
  *          rookTrajectory(Square(3, 5), Square(8, 5)) = listOf(Square(3, 5), Square(8, 5))
  * Если возможно несколько вариантов самой быстрой траектории, вернуть любой из них.
  */
-fun rookTrajectory(start: Square, end: Square): List<Square> {
-    return when (rookMoveNumber(start, end)) {
-        0 -> listOf(start)
-        1 -> listOf(start, end)
-        else -> listOf(start, Square(start.column, end.row), end)
-    }
+fun rookTrajectory(start: Square, end: Square): List<Square> = when (rookMoveNumber(start, end)) {
+    0 -> listOf(start)
+    1 -> listOf(start, end)
+    else -> listOf(start, Square(start.column, end.row), end)
 }
 
 /**
@@ -159,7 +158,23 @@ fun bishopMoveNumber(start: Square, end: Square): Int {
  *          bishopTrajectory(Square(1, 3), Square(6, 8)) = listOf(Square(1, 3), Square(6, 8))
  * Если возможно несколько вариантов самой быстрой траектории, вернуть любой из них.
  */
-fun bishopTrajectory(start: Square, end: Square): List<Square> = TODO()
+fun bishopTrajectory(start: Square, end: Square): List<Square> = when (bishopMoveNumber(start, end)) {
+    0 -> listOf(start)
+    1 -> listOf(start, end)
+    2 -> {
+        var listOfSquares = listOf(start)
+        for (a in 1..8) {
+            for (b in 1..8) {
+                val square = Square(a, b)
+                if (bishopMoveNumber(start, square) == 1 && bishopMoveNumber(end, square) == 1) {
+                    listOfSquares = listOf(start, square, end)
+                }
+            }
+        }
+        listOfSquares
+    }
+    else -> emptyList()
+}
 
 /**
  * Средняя
