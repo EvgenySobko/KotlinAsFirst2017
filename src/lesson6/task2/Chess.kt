@@ -215,7 +215,30 @@ fun kingMoveNumber(start: Square, end: Square): Int {
  *          kingTrajectory(Square(3, 5), Square(6, 2)) = listOf(Square(3, 5), Square(4, 4), Square(5, 3), Square(6, 2))
  * Если возможно несколько вариантов самой быстрой траектории, вернуть любой из них.
  */
-fun kingTrajectory(start: Square, end: Square): List<Square> = TODO()
+fun kingTrajectory(start: Square, end: Square): List<Square> {
+    var listOfSquares = listOf(start)
+    var currentSquare = start
+    var column = currentSquare.column
+    var row = currentSquare.row
+    while (currentSquare != end) {
+        if (column < end.column) {
+            column++
+        }
+        else {
+            column--
+        }
+        if (row < end.row) {
+            row++
+        }
+        else {
+            row--
+        }
+        currentSquare = Square(column, row)
+        listOfSquares += currentSquare
+    }
+    return listOfSquares
+}
+
 
 /**
  * Сложная
