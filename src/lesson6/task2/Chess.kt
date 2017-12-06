@@ -221,15 +221,34 @@ fun kingTrajectory(start: Square, end: Square): List<Square> {
     var column = currentSquare.column
     var row = currentSquare.row
     while (currentSquare != end) {
-        if (column < end.column || row == end.row) {
-            column++
-        } else {
-            column--
-        }
-        if (row < end.row || column == end.column) {
-            row++
-        } else {
-            row--
+        when {
+            column != end.column && row != end.row -> {
+                if (column < end.column) {
+                    column++
+                } else {
+                    column--
+                }
+                if (row < end.row) {
+                    row++
+                } else {
+                    row--
+                }
+            }
+            row == end.row -> {
+                if (column < end.column) {
+                    column++
+                } else {
+                    column--
+                }
+            }
+            column == end.column -> {
+                if (row < end.row) {
+                    row++
+                }
+                else {
+                    row--
+                }
+            }
         }
         currentSquare = Square(column, row)
         listOfSquares += currentSquare
