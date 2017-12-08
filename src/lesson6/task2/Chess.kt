@@ -6,7 +6,7 @@ import java.lang.Math.abs
 import java.lang.Math.max
 
 val letters = listOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
-fun checking(start: Square, end: Square) {
+fun checkForCorrectness(start: Square, end: Square) {
     if (!start.inside() || !end.inside()) {
         throw IllegalArgumentException()
     }
@@ -50,9 +50,8 @@ data class Square(val column: Int, val row: Int) {
 fun square(notation: String): Square {
     if ((notation.length != 2) || (notation[0] !in letters) || (notation[1] !in '1'..'8')) {
         throw IllegalArgumentException()
-    } else {
-        return Square(letters.indexOf(notation[0]) + 1, notation[1].toInt() - '0'.toInt())
     }
+    return Square(letters.indexOf(notation[0]) + 1, notation[1].toInt() - '0'.toInt())
 }
 
 /**
@@ -79,7 +78,7 @@ fun square(notation: String): Square {
  * Ладья может пройти через клетку (3, 3) или через клетку (6, 1) к клетке (6, 3).
  */
 fun rookMoveNumber(start: Square, end: Square): Int {
-    checking(start, end)
+    checkForCorrectness(start, end)
     return when {
         (start.column == end.column && start.row == end.row) -> 0
         (start.column == end.column || start.row == end.row) -> 1
@@ -131,7 +130,7 @@ fun rookTrajectory(start: Square, end: Square): List<Square> = when (rookMoveNum
  * Слон может пройти через клетку (6, 4) к клетке (3, 7).
  */
 fun bishopMoveNumber(start: Square, end: Square): Int {
-    checking(start, end)
+    checkForCorrectness(start, end)
     return when {
         (start == end) -> 0
         ((start.column + start.row) % 2 != ((end.column + end.row) % 2)) -> -1
@@ -197,7 +196,7 @@ fun bishopTrajectory(start: Square, end: Square): List<Square> = when (bishopMov
  * Король может последовательно пройти через клетки (4, 2) и (5, 2) к клетке (6, 3).
  */
 fun kingMoveNumber(start: Square, end: Square): Int {
-    checking(start, end)
+    checkForCorrectness(start, end)
     return max(abs(start.column - end.column), abs(start.row - end.row))
 }
 
@@ -244,8 +243,7 @@ fun kingTrajectory(start: Square, end: Square): List<Square> {
             column == end.column -> {
                 if (row < end.row) {
                     row++
-                }
-                else {
+                } else {
                     row--
                 }
             }
