@@ -5,7 +5,6 @@ package lesson6.task2
 import java.lang.Math.abs
 import java.lang.Math.max
 
-val letters = listOf('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h')
 fun checkForCorrectness(start: Square, end: Square) {
     if (!start.inside() || !end.inside()) {
         throw IllegalArgumentException()
@@ -34,7 +33,7 @@ data class Square(val column: Int, val row: Int) {
      */
     fun notation(): String {
         if (inside()) {
-            return letters[column - 1] + row.toString()
+            return 'a' + column - 1 + row.toString()
         }
         return ""
     }
@@ -48,10 +47,10 @@ data class Square(val column: Int, val row: Int) {
  * Если нотация некорректна, бросить IllegalArgumentException
  */
 fun square(notation: String): Square {
-    if ((notation.length != 2) || (notation[0] !in letters) || (notation[1] !in '1'..'8')) {
+    if ((notation.length != 2) || (notation[0] !in 'a'..'h') || (notation[1] !in '1'..'8')) {
         throw IllegalArgumentException()
     }
-    return Square(letters.indexOf(notation[0]) + 1, notation[1].toInt() - '0'.toInt())
+    return Square(notation[0] - 'a' + 1, notation[1].toInt() - '0'.toInt())
 }
 
 /**
@@ -80,7 +79,7 @@ fun square(notation: String): Square {
 fun rookMoveNumber(start: Square, end: Square): Int {
     checkForCorrectness(start, end)
     return when {
-        (start.column == end.column && start.row == end.row) -> 0
+        start == end -> 0
         (start.column == end.column || start.row == end.row) -> 1
         else -> 2
     }
@@ -197,7 +196,7 @@ fun bishopTrajectory(start: Square, end: Square): List<Square> = when (bishopMov
  */
 fun kingMoveNumber(start: Square, end: Square): Int {
     checkForCorrectness(start, end)
-    return max(abs(start.column - end.column), abs(start.row - end.row))
+    return kingTrajectory(start, end).size - 1
 }
 
 /**
