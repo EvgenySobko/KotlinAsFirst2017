@@ -3,7 +3,6 @@
 package lesson6.task2
 
 import java.lang.Math.abs
-import java.lang.Math.max
 
 fun checkForCorrectness(start: Square, end: Square) {
     if (!start.inside() || !end.inside()) {
