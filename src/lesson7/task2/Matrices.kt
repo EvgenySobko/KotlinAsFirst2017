@@ -3,6 +3,7 @@
 package lesson7.task2
 
 import lesson7.task1.Matrix
+import lesson7.task1.MatrixImpl
 import lesson7.task1.createMatrix
 
 // Все задачи в этом файле требуют наличия реализации интерфейса "Матрица" в Matrix.kt
@@ -104,7 +105,18 @@ fun generateSnake(height: Int, width: Int): Matrix<Int> = TODO()
  * 4 5 6      8 5 2
  * 7 8 9      9 6 3
  */
-fun <E> rotate(matrix: Matrix<E>): Matrix<E> = TODO()
+fun <E> rotate(matrix: Matrix<E>): Matrix<E> {
+    if (matrix.height != matrix.width) {
+        throw IllegalArgumentException()
+    }
+    var result = MatrixImpl(matrix.height, matrix.width, matrix[0, 0])
+    for (a in 0 until matrix.height) {
+        for (b in 0 until matrix.width) {
+            result[a, (matrix.width - 1) - b] = matrix[b, a]
+        }
+    }
+    return result
+}
 
 /**
  * Сложная
