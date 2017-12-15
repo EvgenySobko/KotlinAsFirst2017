@@ -117,7 +117,7 @@ fun <E> rotate(matrix: Matrix<E>): Matrix<E> {
     if (matrix.width != matrix.height) {
         throw IllegalArgumentException()
     }
-    var result = MatrixImpl(matrix.height, matrix.width, matrix[0, 0])
+    val result = MatrixImpl(matrix.height, matrix.width, matrix[0, 0])
     for (a in 0 until matrix.height) {
         for (b in 0 until matrix.width) {
             result[a, (matrix.width - 1) - b] = matrix[b, a]
