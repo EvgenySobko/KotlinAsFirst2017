@@ -2,6 +2,7 @@
 
 package lesson6.task2
 
+import lesson7.task2.canOpenLock
 import java.lang.Math.abs
 
 fun checkForCorrectness(start: Square, end: Square) {
@@ -299,4 +300,3 @@ fun knightMoveNumber(start: Square, end: Square): Int = TODO()
  * Если возможно несколько вариантов самой быстрой траектории, вернуть любой из них.
  */
 fun knightTrajectory(start: Square, end: Square): List<Square> = TODO()
-

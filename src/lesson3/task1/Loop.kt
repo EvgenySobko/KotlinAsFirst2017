@@ -2,6 +2,7 @@
 
 package lesson3.task1
 
+import lesson5.task1.flattenPhoneNumber
 import java.lang.Math.sqrt
 
 /**
@@ -212,24 +213,24 @@ fun hasDifferentDigits(n: Int): Boolean {
  */
 fun divInHard(result: Int, dif: Int): Int {
     var result = result
-    var dif = dif
-    while (dif > 0) {
+    var difference = dif
+    while (difference > 0) {
         result /= 10
-        dif--
+        difference--
     }
     return result
 }
 
 fun squareSequenceDigit(n: Int): Int {
     var num = 0
-    var flag = 0
-    while (flag < n) {
+    var lastNumber = 0
+    while (lastNumber < n) {
         num++
-        flag += digitNumber(num * num)
+        lastNumber += digitNumber(num * num)
     }
     var result = num * num
-    var dif = flag - n
-    result = divInHard(result, dif)
+    var difference = lastNumber - n
+    result = divInHard(result, difference)
     return result % 10
 }
 
@@ -242,13 +243,13 @@ fun squareSequenceDigit(n: Int): Int {
  */
 fun fibSequenceDigit(n: Int): Int {
     var num = 0
-    var flag = 0
-    while (flag < n) {
+    var lastNumber = 0
+    while (lastNumber < n) {
         num++
-        flag += digitNumber(fib(num))
+        lastNumber += digitNumber(fib(num))
     }
     var result = fib(num)
-    var dif = flag - n
-    result = divInHard(result, dif)
+    var difference = lastNumber - n
+    result = divInHard(result, difference)
     return result % 10
 }

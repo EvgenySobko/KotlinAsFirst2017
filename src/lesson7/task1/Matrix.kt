@@ -87,6 +87,8 @@ class MatrixImpl<E>(override val height: Int, override val width: Int, e: E) : M
             for (b in 0 until width) {
                 result.append(this[a, b])
             }
+            result.append(" ")
+            result.append("\n")
         }
         return result.toString()
     }

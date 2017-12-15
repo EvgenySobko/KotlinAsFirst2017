@@ -77,7 +77,15 @@ fun generateSpiral(height: Int, width: Int): Matrix<Int> = TODO()
  *  1  2  2  2  2  1
  *  1  1  1  1  1  1
  */
-fun generateRectangles(height: Int, width: Int): Matrix<Int> = TODO()
+fun generateRectangles(height: Int, width: Int): Matrix<Int> {
+    val matrix = createMatrix(height, width, 1)
+    for (a in 0 until matrix.height) {
+        for (b in 0 until matrix.width) {
+            matrix[a, b] = minOf(minOf(a + 1, b + 1, height - a), width - b)
+        }
+    }
+    return matrix
+}
 
 /**
  * Сложная
@@ -106,7 +114,7 @@ fun generateSnake(height: Int, width: Int): Matrix<Int> = TODO()
  * 7 8 9      9 6 3
  */
 fun <E> rotate(matrix: Matrix<E>): Matrix<E> {
-    if (matrix.height != matrix.width) {
+    if (matrix.width != matrix.height) {
         throw IllegalArgumentException()
     }
     var result = MatrixImpl(matrix.height, matrix.width, matrix[0, 0])

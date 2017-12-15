@@ -324,14 +324,14 @@ val listOfUnits = listOf("", "один ", "два ", "три ", "четыре ",
 val listUnderTwenty = listOf("десять ", "одиннадцать ", "двенадцать ", "тринадцать ", "четырнадцать ",
         "пятнадцать ", "шестнадцать ", "семнадцать ", "восемнадцать ", "девятнадцать ")
 
-fun helpForRussian(partOfNum: Int, flag: Int): String {
+fun helpForRussian(partOfNum: Int, flag: Boolean): String {
     var partOfNum = convert(partOfNum % 1000, 10).reversed()
     var result = ""
     if (partOfNum.isNotEmpty()) {
-        if (flag == 1) {
+        if (flag) {
             result += listOfUnits[partOfNum[0]]
         }
-        if (flag == 2) {
+        if (!flag) {
             result += listOfUnitsThousands[partOfNum[0]]
         }
     }
@@ -348,7 +348,7 @@ fun helpForRussian(partOfNum: Int, flag: Int): String {
 
 fun russian(n: Int): String {
     var thousands = listOf("тысяча ", "тысячи ", "тысяч ")
-    var result = helpForRussian(n % 1000, 1)
+    var result = helpForRussian(n % 1000, true)
     if (n > 999) {
         result = when {
             (n % 100000) / 1000 in 10..19 -> thousands[2] + result
@@ -356,7 +356,7 @@ fun russian(n: Int): String {
             (n % 10000) / 1000 in 2..4 -> thousands[1] + result
             else -> thousands[2] + result
         }
-        result = helpForRussian(n / 1000, 2) + result
+        result = helpForRussian(n / 1000, false) + result
     }
     return result.trim()
 }
