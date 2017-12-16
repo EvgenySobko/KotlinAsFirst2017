@@ -2,7 +2,6 @@
 
 package lesson6.task2
 
-import lesson7.task2.canOpenLock
 import java.lang.Math.abs
 
 fun checkForCorrectness(start: Square, end: Square) {
@@ -156,22 +155,20 @@ fun bishopMoveNumber(start: Square, end: Square): Int {
  *          bishopTrajectory(Square(1, 3), Square(6, 8)) = listOf(Square(1, 3), Square(6, 8))
  * Если возможно несколько вариантов самой быстрой траектории, вернуть любой из них.
  */
-fun bishopTrajectory(start: Square, end: Square): List<Square> = when (bishopMoveNumber(start, end)) {
-    0 -> listOf(start)
-    1 -> listOf(start, end)
-    2 -> {
-        var listOfSquares = listOf(start)
-        for (a in 1..8) {
-            for (b in 1..8) {
-                val square = Square(a, b)
-                if (bishopMoveNumber(start, square) == 1 && bishopMoveNumber(end, square) == 1) {
-                    listOfSquares = listOf(start, square, end)
-                }
-            }
-        }
-        listOfSquares
+fun bishopTrajectory(start: Square, end: Square): List<Square> {
+    checkForCorrectness(start, end)
+    var column = (start.column - start.row + end.column + end.row) / 2
+    var row = (start.row - start.column + end.column + end.row) / 2
+    if (!Square(column, row).inside()) {
+        column = (end.column - end.row + start.column + start.row) / 2
+        row = (end.row - end.column + start.column + start.row) / 2
     }
-    else -> emptyList()
+    return when (bishopMoveNumber(start, end)) {
+        -1 -> emptyList()
+        0 -> listOf(start)
+        1 -> listOf(start, end)
+        else -> listOf(start, Square(column, row), end)
+    }
 }
 
 /**
