@@ -63,7 +63,13 @@ class MatrixImpl<E>(override val height: Int, override val width: Int, e: E) : M
         }
     }
 
-    override fun get(row: Int, column: Int): E = list[width * row + column]
+    override fun get(row: Int, column: Int): E {
+        if (width < column) {
+            throw IllegalArgumentException()
+        } else {
+            return list[width * row + column]
+        }
+    }
 
     override fun get(cell: Cell): E = list[cell.row * width + cell.column]
 
