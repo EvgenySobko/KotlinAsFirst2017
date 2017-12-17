@@ -211,9 +211,9 @@ fun hasDifferentDigits(n: Int): Boolean {
  * 149162536496481100121144...
  * Например, 2-я цифра равна 4, 7-я 5, 12-я 6.
  */
-fun divInHard(result: Int, dif: Int): Int {
+fun divInHard(result: Int, diff: Int): Int {
     var result = result
-    var difference = dif
+    var difference = diff
     while (difference > 0) {
         result /= 10
         difference--
