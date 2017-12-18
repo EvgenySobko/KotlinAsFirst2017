@@ -172,4 +172,10 @@ class Tests {
         knightTrajectory(square("a8"), square("h1")).assertKnightTrajectory(square("a8"), square("h1"), 6)
     }
 
+    @Test
+    fun numToFac() {
+        assertEquals((listOf(3, 1, 0)), numToFac(20))
+        assertEquals((listOf(6, 5, 5, 2, 2, 1, 0)), numToFac(34502))
+        assertEquals((listOf(1, 1, 4, 2, 1, 5, 5, 0, 2, 0, 0)), numToFac(45087012))
+    }
 }

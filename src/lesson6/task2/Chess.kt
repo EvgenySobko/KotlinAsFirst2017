@@ -297,3 +297,27 @@ fun knightMoveNumber(start: Square, end: Square): Int = TODO()
  * Если возможно несколько вариантов самой быстрой траектории, вернуть любой из них.
  */
 fun knightTrajectory(start: Square, end: Square): List<Square> = TODO()
+
+fun numToFac(number: Int): List<Int> {
+    var number = number
+    if (number == 0) return listOf(number)
+    var result = listOf<Int>()
+    var flag = 1
+    while (factorial(flag) < number) {
+        flag++
+    }
+    while (flag > 0) {
+        result += number / factorial(flag).toInt()
+        number %= factorial(flag).toInt()
+        flag--
+    }
+    return result - result[0]
+}
+
+fun factorial(n: Int): Double {
+    var result = 1.0
+    for (i in 1..n) {
+        result *= i
+    }
+    return result
+}
