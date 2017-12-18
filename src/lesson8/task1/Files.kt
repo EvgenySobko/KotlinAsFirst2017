@@ -58,7 +58,7 @@ fun countSubstrings(inputName: String, substrings: List<String>): Map<String, In
     for (a in substrings) {
         var num = 0
         for (b in File(inputName).readLines()) {
-            num += Regex(a.toLowerCase()).findAll(b.toLowerCase()).count()
+            num += a.toLowerCase().toRegex().findAll(b.toLowerCase()).count()
         }
         result[a] = num
     }

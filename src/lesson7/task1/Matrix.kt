@@ -64,21 +64,35 @@ class MatrixImpl<E>(override val height: Int, override val width: Int, e: E) : M
     }
 
     override fun get(row: Int, column: Int): E {
-        if (width < column) {
-            throw IllegalArgumentException()
+        if (width < column || row > height) {
+            throw ArrayIndexOutOfBoundsException()
         } else {
             return list[width * row + column]
         }
     }
 
-    override fun get(cell: Cell): E = list[cell.row * width + cell.column]
+    override fun get(cell: Cell): E {
+        if (width < cell.column || cell.row > height) {
+            throw ArrayIndexOutOfBoundsException()
+        } else {
+            return list[cell.row * width + cell.column]
+        }
+    }
 
     override fun set(row: Int, column: Int, value: E) {
-        list[width * row + column] = value
+        if (width < column || row > height) {
+            throw ArrayIndexOutOfBoundsException()
+        } else {
+            list[width * row + column] = value
+        }
     }
 
     override fun set(cell: Cell, value: E) {
-        list[cell.row * width + cell.column] = value
+        if (width < cell.column || cell.row > height) {
+            throw ArrayIndexOutOfBoundsException()
+        } else {
+            list[cell.row * width + cell.column] = value
+        }
     }
 
     override fun equals(other: Any?): Boolean {
